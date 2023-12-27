@@ -258,6 +258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chessboard
       objectReference: {fileID: 0}
+    - target: {fileID: 6169156634077172142, guid: c9430105cb4179c438f94402a0b22001, type: 3}
+      propertyPath: m_DrawMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7668256093585926934, guid: c9430105cb4179c438f94402a0b22001, type: 3}
       propertyPath: m_RootOrder
       value: 1
