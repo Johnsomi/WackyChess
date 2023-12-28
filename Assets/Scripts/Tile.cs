@@ -7,7 +7,8 @@ public class Tile : MonoBehaviour
     //ControlCenter controlCenter;
     [HideInInspector] public bool taken = false;
     [HideInInspector] public int tileID = -1;
-    string currentPiece = "";
+    //[HideInInspector] public int piece = 0;
+    [HideInInspector] public Movement currentPiece;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,14 +35,18 @@ public class Tile : MonoBehaviour
     //    else { return true; }
     //}
 
-    public void SetPiece(string id)
+    public void SetPiece(Movement id, bool take)
     {
+        if (take)
+        {
+            Destroy(currentPiece.gameObject);
+        }
         currentPiece = id;
         if (!taken)
         {
             taken = true;
         }
-        else if (id == "")
+        else if (id == null)
         {
             taken = false;
         }

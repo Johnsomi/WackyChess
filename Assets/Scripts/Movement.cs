@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     ControlCenter controlCenter;
     [SerializeField] LayerMask tileLayer;
     [HideInInspector] public bool canDrag = false;
-    public string pieceID = "null";
+    public int pieceColor = 0;
     [HideInInspector] public Tile currentTile;
 
     private void Awake()
@@ -108,15 +108,15 @@ public class Movement : MonoBehaviour
 
   //  }
 
-    public void Lock(Vector2 pos, Tile tile)
+    public void Lock(Vector2 pos, Tile tile, bool take)
     {
         if (currentTile != null)
         {
-            currentTile.SetPiece("");
+            currentTile.SetPiece(null, false);
         }
         gameObject.transform.position = pos;
         currentTile = tile;
-        currentTile.SetPiece(pieceID);
+        currentTile.SetPiece(this, take);
     }
 
     public void Return()

@@ -29,11 +29,19 @@ public class ControlCenter : MonoBehaviour
         {
             if (tiles[i].bounds.Contains(pos))
             {
+                
                 if (!tiles[i].GetComponent<Tile>().taken)
                 {
                     piece.canDrag = false;
-                    piece.Lock(tiles[i].gameObject.transform.position, tiles[i].GetComponent<Tile>());
+                    //tiles[i].GetComponent<Tile>().SetPiece(piece, false);
+                    piece.Lock(tiles[i].gameObject.transform.position, tiles[i].GetComponent<Tile>(), false);
                     //current = null;
+                }
+                else if (tiles[i].GetComponent<Tile>().currentPiece.pieceColor != piece.pieceColor)
+                {
+                    piece.canDrag = false;
+                    // tiles[i].GetComponent<Tile>().SetPiece(piece, true);
+                    piece.Lock(tiles[i].gameObject.transform.position, tiles[i].GetComponent<Tile>(), true);
                 }
                 else
                 {
