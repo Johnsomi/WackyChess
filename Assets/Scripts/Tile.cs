@@ -5,9 +5,9 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     //ControlCenter controlCenter;
-    bool taken = false;
+    [HideInInspector] public bool taken = false;
     [HideInInspector] public int tileID = -1;
-    int currentPiece = -1;
+    string currentPiece = "";
     // Start is called before the first frame update
     void Start()
     {
@@ -20,23 +20,30 @@ public class Tile : MonoBehaviour
         
     }
 
-    public void SwapTaken(bool taken)
-    {
-        this.taken = taken;
-    }
+    //public void SwapTaken(bool taken)
+    //{
+    //    this.taken = taken;
+    //}
 
-    public bool CheckIfTaken()
+    //public bool CheckIfTaken()
+    //{
+    //    if (!taken)
+    //    {
+    //        return false;
+    //    }
+    //    else { return true; }
+    //}
+
+    public void SetPiece(string id)
     {
+        currentPiece = id;
         if (!taken)
         {
-            SwapTaken(true);
-            return false;
+            taken = true;
         }
-        else { return true; }
-    }
-
-    public void SetPiece(int id)
-    {
-
+        else if (id == "")
+        {
+            taken = false;
+        }
     }
 }

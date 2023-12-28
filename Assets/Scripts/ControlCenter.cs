@@ -8,7 +8,7 @@ public class ControlCenter : MonoBehaviour
     public Transform tileParent;
     [SerializeField] private List<BoxCollider> tiles = new List<BoxCollider>(); 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         for (int i = 0; i < tileParent.childCount; i++)
         {
@@ -23,18 +23,28 @@ public class ControlCenter : MonoBehaviour
         
     }
 
-    public void PositionSet(Vector2 pos)
+    public void PositionSet(Vector2 pos, Movement piece)
     {
         for (int i = 0; i < tiles.Count; i++) 
         {
             if (tiles[i].bounds.Contains(pos))
             {
-                // if (tiles[i].GetComponent<Tile>().CheckIfTaken())
-                // {
-                    current.canDrag = false;
-                    current.Lock(tiles[i].gameObject.transform.position, tiles[i].GetComponent<Tile>());
+                if (!tiles[i].GetComponent<Tile>().taken)
+                {
+                    piece.canDrag = false;
+                    piece.Lock(tiles[i].gameObject.transform.position, tiles[i].GetComponent<Tile>());
+                    //current = null;
+                }
+                else
+                {
+                    piece.canDrag = false;
+                    piece.Return();
+                   // current = null;
+                }
+                if (current != null)
+                {
                     current = null;
-                //}
+                }
                 break;
             }
         }
