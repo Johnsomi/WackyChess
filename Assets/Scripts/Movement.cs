@@ -9,13 +9,15 @@ public class Movement : MonoBehaviour
     Mouse mouse;
     ControlCenter controlCenter;
     [SerializeField] LayerMask tileLayer;
-    bool canDrag = false;
+    [HideInInspector] public bool canDrag = false;
+    [HideInInspector] public Tile currentTile;
     // Start is called before the first frame update
     private void Awake()
     {
         mouse = GameObject.Find("Mouse").GetComponent<Mouse>();
         tileLayer = LayerMask.NameToLayer("Tile");
         controlCenter = GameObject.Find("ControlCenter").GetComponent<ControlCenter>();
+        controlCenter.PositionSet(transform.position);
     }
 
     // Update is called once per frame
@@ -48,6 +50,11 @@ public class Movement : MonoBehaviour
             controlCenter.current = this;
             canDrag = true;
         }
+        else if (canDrag && controlCenter.current == this)
+        {
+           // canDrag = false;
+            controlCenter.PositionSet(transform.position);
+        }
     }
 
     //private void OnMouseDrag()
@@ -65,10 +72,13 @@ public class Movement : MonoBehaviour
     //    }
     //}
 
-    private void OnMouseUp()
-    {
-        canDrag = false;
-        controlCenter.PositionSet(transform.position);
+  //  private void OnMouseUp()
+  //  {
+       // canDrag = false;
+      //  controlCenter.PositionSet(transform.position);
+
+
+
         //controlCenter.movingPiece = false;
         //Vector2 hitpos = Camera.main.ScreenToWorldPoint(gameObject.transform.position);
 
@@ -90,10 +100,11 @@ public class Movement : MonoBehaviour
 
 
 
-    }
+  //  }
 
-    public void Lock(Vector2 pos)
+    public void Lock(Vector2 pos, Tile tile)
     {
         gameObject.transform.position = pos;
+        currentTile = tile;
     }
 }

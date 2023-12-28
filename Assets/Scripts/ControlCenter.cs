@@ -13,6 +13,7 @@ public class ControlCenter : MonoBehaviour
         for (int i = 0; i < tileParent.childCount; i++)
         {
             tiles.Add(tileParent.GetChild(i).GetComponent<BoxCollider>());
+            tileParent.GetChild(i).GetComponent<Tile>().tileID = i;
         }
     }
 
@@ -28,10 +29,14 @@ public class ControlCenter : MonoBehaviour
         {
             if (tiles[i].bounds.Contains(pos))
             {
-                current.Lock(tiles[i].gameObject.transform.position);
+                // if (tiles[i].GetComponent<Tile>().CheckIfTaken())
+                // {
+                    current.canDrag = false;
+                    current.Lock(tiles[i].gameObject.transform.position, tiles[i].GetComponent<Tile>());
+                    current = null;
+                //}
                 break;
             }
         }
-        current = null;
     }
 }
