@@ -12,6 +12,33 @@ public class Movement : MonoBehaviour
     [HideInInspector] public bool canDrag = false;
     public int pieceColor = 0;
     [HideInInspector] public Tile currentTile;
+    public List<int> moveTypes;
+    [HideInInspector] public List<int> abilityType;
+    bool canPlace = true;
+    private enum MovementType
+    {
+        King = 0,
+        Queen = 1,
+        Bishop = 2,
+        Knight = 3,
+        Rook = 4,
+        Pawn = 5,
+        Dash = 6,
+        Dig = 7
+    }
+
+    private enum Abilities
+    {
+        Shoot = 12,
+        Protect = 13,
+        Redirect = 14,
+        AreaEffect = 15,
+        Swap = 16,
+    }
+
+
+  //  private List<int> movements;
+
 
     private void Awake()
     {
@@ -24,7 +51,26 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         controlCenter.PositionSet(transform.position, this);
+        //SetMovement();
     }
+
+    //void SetMovement()
+    //{
+    //    for (int i = 0; i < pieceType.Count; i++)
+    //    {
+    //        if (!movements.Contains(pieceType[i]))
+    //        {
+    //            movements.Add(pieceType[i]);
+    //        }
+    //    }
+    //    for (int i = 0; i < abilityType.Count; i++)
+    //    {
+    //        if (!movements.Contains(abilityType[i]))
+    //        {
+    //            movements.Add(abilityType[i]);
+    //        }
+    //    }
+    //}
 
     // Update is called once per frame
     void Update()
@@ -32,19 +78,23 @@ public class Movement : MonoBehaviour
        // Debug.DrawLine(gameObject.transform.position, Vector3.back, UnityEngine.Color.red, 5f);
         if (canDrag && mouse.follow)
         {
-            //if (controlCenter.currentPiece == this)
-            //{
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                //RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-                ////mousePos.z = Camera.main.transform.position.z + Camera.main.nearClipPlane;
-                //// RaycastHit2D rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
-                //if (hit.collider != null)
-                //{
-                //    transform.position = mousePos;
-                //}
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = mousePos;
-            //}
         }
+        //if (Input.GetMouseButtonDown(1)) // right click
+        //{
+        //    // Display Ability Menu
+        //}
+    }
+
+    void DisplayMovement(List<int> movements)
+    {
+
+    }
+
+    void CheckCanPlace(Vector2 pos)
+    {
+        
     }
 
     private void OnMouseDown()
@@ -55,11 +105,16 @@ public class Movement : MonoBehaviour
         {
             controlCenter.current = this;
             canDrag = true;
+            DisplayMovement(moveTypes);
         }
-        else if (canDrag && controlCenter.current == this)
+        else
         {
-           // canDrag = false;
-            controlCenter.PositionSet(transform.position, this);
+            CheckCanPlace(transform.position);
+            if (canDrag && canPlace && controlCenter.current == this)
+            {
+                // canDrag = false;
+                controlCenter.PositionSet(transform.position, this);
+            }
         }
     }
 
