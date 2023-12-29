@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -81,10 +82,11 @@ public class Movement : MonoBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = mousePos;
         }
-        //if (Input.GetMouseButtonDown(1)) // right click
-        //{
-        //    // Display Ability Menu
-        //}
+        if (Input.GetMouseButtonDown(1) && canDrag) // right click
+        {
+            Return();
+            // Display Ability Menu
+        }
     }
 
     void DisplayMovement(List<int> movements)
@@ -92,10 +94,46 @@ public class Movement : MonoBehaviour
 
     }
 
-    void CheckCanPlace(Vector2 pos)
+    public void GetMovement()
     {
-        
+        for (int i = 0; i < moveTypes.Count; i++)
+        {
+            switch (moveTypes[i])
+            {
+                case 0:
+                    SurroundMove();
+                    break;
+            }
+        }
+
     }
+
+    void LineMove(int x, int y)
+    {
+
+    }
+
+    void SurroundMove()
+    {
+
+        int y = (currentTile.tilePos.GetLength(0));
+        int x = (currentTile.tilePos.GetLength(1));
+
+        controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x + 1));
+        controlCenter.possibles.Add(new Tuple<int, int>(y, x + 1));
+        controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x + 1));
+        controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x));
+        controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x - 1));
+        controlCenter.possibles.Add(new Tuple<int, int>(y, x - 1));
+        controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x - 1));
+        controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x));
+    }
+
+    //public bool CheckCanPlace(Vector2 pos)
+    //{
+    //    if (currentTile)
+    //    return true;
+    //}
 
     private void OnMouseDown()
     {
@@ -105,11 +143,11 @@ public class Movement : MonoBehaviour
         {
             controlCenter.current = this;
             canDrag = true;
-            DisplayMovement(moveTypes);
+           // DisplayMovement(moveTypes);
         }
         else
         {
-            CheckCanPlace(transform.position);
+            //CheckCanPlace(transform.position);
             if (canDrag && canPlace && controlCenter.current == this)
             {
                 // canDrag = false;
@@ -177,5 +215,10 @@ public class Movement : MonoBehaviour
     public void Return()
     {
         gameObject.transform.position = currentTile.transform.position;
+        if (canDrag)
+        {
+            controlCenter.current = null;
+            canDrag = false;
+        }
     }
 }
