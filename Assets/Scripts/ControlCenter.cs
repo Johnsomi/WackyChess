@@ -10,6 +10,7 @@ public class ControlCenter : MonoBehaviour
     [SerializeField] private List<BoxCollider> tiles = new List<BoxCollider>();
     bool canPlace = true;
     public List<Tuple<int, int>> possibles = new List<Tuple<int, int>>();
+    public List<Tile> possibleMoves = new List<Tile>();
     // Start is called before the first frame update
     void Awake()
     {
@@ -39,6 +40,7 @@ public class ControlCenter : MonoBehaviour
 
     public void PositionSet(Vector2 pos, Movement piece)
     {
+        CheckForJumps(piece);
         for (int i = 0; i < tiles.Count; i++) 
         {
             if (tiles[i].bounds.Contains(pos))
@@ -50,18 +52,34 @@ public class ControlCenter : MonoBehaviour
                 else { canPlace = true; }
                 if (canPlace)
                 {
-                    if (!tiles[i].GetComponent<Tile>().taken)
+                    int Ptemp = 0;
+                    if (piece.moveTypes.Contains(5) && current)
+                    {
+                        if (tiles[i].GetComponent<Tile>().tilePos.GetLength(1) == piece.currentTile.tilePos.GetLength(1))
+                        {
+                            Ptemp = 1;
+                        }
+                        else if ((tiles[i].GetComponent<Tile>().tilePos.GetLength(0) != piece.currentTile.tilePos.GetLength(0)))
+                        {
+                            Ptemp = 2;
+                        }
+                    }
+
+                    if (!tiles[i].GetComponent<Tile>().taken && Ptemp != 2)
                     {
                         piece.canDrag = false;
                         //tiles[i].GetComponent<Tile>().SetPiece(piece, false);
                         piece.Lock(tiles[i].gameObject.transform.position, tiles[i].GetComponent<Tile>(), false);
                         //current = null;
                     }
-                    else if (tiles[i].GetComponent<Tile>().currentPiece.pieceColor != piece.pieceColor)
+                    else if (tiles[i].GetComponent<Tile>().currentPiece != null && Ptemp != 1) 
                     {
-                        piece.canDrag = false;
-                        // tiles[i].GetComponent<Tile>().SetPiece(piece, true);
-                        piece.Lock(tiles[i].gameObject.transform.position, tiles[i].GetComponent<Tile>(), true);
+                        if (tiles[i].GetComponent<Tile>().currentPiece.pieceColor != piece.pieceColor)
+                        {
+                            piece.canDrag = false;
+                            // tiles[i].GetComponent<Tile>().SetPiece(piece, true);
+                            piece.Lock(tiles[i].gameObject.transform.position, tiles[i].GetComponent<Tile>(), true);
+                        }
                     }
                     else
                     {
@@ -96,6 +114,41 @@ public class ControlCenter : MonoBehaviour
                 canPlace = true;
             }
             //Debug.Log(possibles.Contains(new Tuple<int, int>(tile.tilePos.GetLength(0), tile.tilePos.GetLength(1))));
+        //}
+    }
+
+    void CheckForJumps(Movement piece)
+    {
+        //if (!piece.abilityType.Contains(11))
+        //{
+        //    List<Tile> tempTiles = new List<Tile>();
+        //    List<Tile> takenTiles = new List<Tile>();
+        //    for (int i = 0; i < possibles.Count; i++)
+        //    {
+        //        var temp1 = possibles[i].Item1;
+        //        var temp2 = possibles[i].Item2;
+
+        //        for (int j = 0; j < tiles.Count; j++)
+        //        {
+        //            if (tiles[j].GetComponent<Tile>().tilePos.GetLength(0) == temp1 && tiles[j].GetComponent<Tile>().tilePos.GetLength(1) == temp2)
+        //            {
+        //                tempTiles.Add(tiles[j].GetComponent<Tile>());
+        //                if (tiles[j].GetComponent<Tile>().taken == true)
+        //                {
+        //                    takenTiles.Add(tiles[j].GetComponent<Tile>());
+        //                }
+        //            }
+        //        }
+        //    }
+        //    for (int i = 0; i < tempTiles.Count; i++)
+        //    {
+        //        for (int j = 0; j < takenTiles.Count; j++) {
+        //            if (tempTiles[i].tilePos.GetLength(0) < takenTiles[j].tilePos.GetLength(0))
+        //            {
+        //                break;
+        //            }
+        //        }
+        //    }
         //}
     }
 }

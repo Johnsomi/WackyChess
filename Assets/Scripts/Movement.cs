@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
     public List<int> moveTypes;
     [HideInInspector] public List<int> abilityType;
     bool canPlace = true;
+    private bool hasMoved = false;
     private enum MovementType
     {
         King = 0,
@@ -23,18 +24,17 @@ public class Movement : MonoBehaviour
         Bishop = 2,
         Knight = 3,
         Rook = 4,
-        Pawn = 5,
-        Dash = 6,
-        Dig = 7
+        Pawn = 5
     }
 
     private enum Abilities
     {
+        Dig = 11,
         Shoot = 12,
         Protect = 13,
         Redirect = 14,
         AreaEffect = 15,
-        Swap = 16,
+        Swap = 16
     }
 
 
@@ -128,14 +128,50 @@ public class Movement : MonoBehaviour
 
     }
 
-    void PawnMove()
+    void CheckForJumps(Tile tile)
     {
 
     }
 
+    void PawnMove()
+    {
+        int y = (currentTile.tilePos.GetLength(0));
+        int x = (currentTile.tilePos.GetLength(1));
+        if (pieceColor == 1)
+        {
+            if (!hasMoved)
+            {
+                controlCenter.possibles.Add(new Tuple<int, int>(y + 2, x));
+            }
+            controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x));
+            controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x + 1));
+            controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x - 1));
+        }
+        else
+        {
+            if (!hasMoved)
+            {
+                controlCenter.possibles.Add(new Tuple<int, int>(y - 2, x));
+            }
+            controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x));
+            controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x + 1));
+            controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x - 1));
+        }
+    }
+
     void LMove()
     {
+        int y = (currentTile.tilePos.GetLength(0));
+        int x = (currentTile.tilePos.GetLength(1));
 
+        controlCenter.possibles.Add(new Tuple<int, int>(y + 2, x + 1));
+        controlCenter.possibles.Add(new Tuple<int, int>(y + 2, x - 1));
+        controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x + 2));
+        controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x + 2));
+        controlCenter.possibles.Add(new Tuple<int, int>(y - 2, x + 1));
+        controlCenter.possibles.Add(new Tuple<int, int>(y - 2, x - 1));
+        controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x - 2));
+        controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x - 2));
     }
 
     void LineMove(int dir)
