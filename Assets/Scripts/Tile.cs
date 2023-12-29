@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     //ControlCenter controlCenter;
-    [HideInInspector] public bool taken = false;
+    public bool taken = false;
     //[HideInInspector] public int tileID = -1;
     public int[,] tilePos = new int[0, 0];
     //[HideInInspector] public int piece = 0;

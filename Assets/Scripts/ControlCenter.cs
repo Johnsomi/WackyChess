@@ -40,7 +40,7 @@ public class ControlCenter : MonoBehaviour
 
     public void PositionSet(Vector2 pos, Movement piece)
     {
-        CheckForJumps(piece);
+       // CheckForJumps(piece);
         for (int i = 0; i < tiles.Count; i++) 
         {
             if (tiles[i].bounds.Contains(pos))

@@ -139,23 +139,23 @@ public class Movement : MonoBehaviour
         int x = (currentTile.tilePos.GetLength(1));
         if (pieceColor == 1)
         {
+            controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x));
+            controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x + 1));
+            controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x - 1));
             if (!hasMoved)
             {
                 controlCenter.possibles.Add(new Tuple<int, int>(y + 2, x));
             }
-            controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x));
-            controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x + 1));
-            controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x - 1));
         }
         else
         {
+            controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x));
+            controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x + 1));
+            controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x - 1));
             if (!hasMoved)
             {
                 controlCenter.possibles.Add(new Tuple<int, int>(y - 2, x));
             }
-            controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x));
-            controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x + 1));
-            controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x - 1));
         }
     }
 
@@ -312,6 +312,7 @@ public class Movement : MonoBehaviour
         if (currentTile != null)
         {
             currentTile.SetPiece(null, false);
+            hasMoved = true;
         }
         gameObject.transform.position = pos;
         currentTile = tile;
