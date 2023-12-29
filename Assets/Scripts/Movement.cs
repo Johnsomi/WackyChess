@@ -103,14 +103,84 @@ public class Movement : MonoBehaviour
                 case 0:
                     SurroundMove();
                     break;
+
+                case 1:
+                    LineMove(0);
+                    break;
+
+                case 2: 
+                    LineMove(2);
+                    break;
+
+                case 3:
+                    LMove();
+                    break;
+
+                case 4:
+                    LineMove(1);
+                    break;
+
+                case 5:
+                    PawnMove();
+                    break;
             }
         }
 
     }
 
-    void LineMove(int x, int y)
+    void PawnMove()
     {
 
+    }
+
+    void LMove()
+    {
+
+    }
+
+    void LineMove(int dir)
+    {
+        int y = (currentTile.tilePos.GetLength(0));
+        int x = (currentTile.tilePos.GetLength(1));
+        switch (dir)
+        {
+            // Omni
+            case 0:
+                for (int i = 0; i < 9; i++)
+                {
+                    controlCenter.possibles.Add(new Tuple<int, int>(y + i, x + i));
+                    controlCenter.possibles.Add(new Tuple<int, int>(y, x + i));
+                    controlCenter.possibles.Add(new Tuple<int, int>(y - i, x + i));
+                    controlCenter.possibles.Add(new Tuple<int, int>(y - i, x));
+                    controlCenter.possibles.Add(new Tuple<int, int>(y - i, x - i));
+                    controlCenter.possibles.Add(new Tuple<int, int>(y, x - i));
+                    controlCenter.possibles.Add(new Tuple<int, int>(y + i, x - i));
+                    controlCenter.possibles.Add(new Tuple<int, int>(y + i, x));
+                }
+                break;
+
+            // Hor / Ver
+            case 1:
+                for (int i = 0; i < 9; i++)
+                {
+                    controlCenter.possibles.Add(new Tuple<int, int>(y, x + i));
+                    controlCenter.possibles.Add(new Tuple<int, int>(y - i, x));
+                    controlCenter.possibles.Add(new Tuple<int, int>(y, x - i));
+                    controlCenter.possibles.Add(new Tuple<int, int>(y + i, x));
+                }
+                break;
+
+            // Diag
+            case 2:
+                for (int i = 0; i < 9; i++)
+                {
+                    controlCenter.possibles.Add(new Tuple<int, int>(y + i, x + i));
+                    controlCenter.possibles.Add(new Tuple<int, int>(y - i, x + i));
+                    controlCenter.possibles.Add(new Tuple<int, int>(y - i, x - i));
+                    controlCenter.possibles.Add(new Tuple<int, int>(y + i, x - i));
+                }
+                break;
+        }
     }
 
     void SurroundMove()
