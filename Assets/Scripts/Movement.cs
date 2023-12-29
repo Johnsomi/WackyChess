@@ -84,6 +84,7 @@ public class Movement : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1) && canDrag) // right click
         {
+            controlCenter.ColorSet(false);
             Return();
             // Display Ability Menu
         }
@@ -250,7 +251,7 @@ public class Movement : MonoBehaviour
             controlCenter.current = this;
             canDrag = true;
             GetMovement();
-            controlCenter.ColorSet();
+            controlCenter.ColorSet(true);
            // DisplayMovement(moveTypes);
         }
         else
@@ -328,6 +329,7 @@ public class Movement : MonoBehaviour
         {
             controlCenter.current = null;
             canDrag = false;
+            controlCenter.possibles.Clear();
         }
     }
 }

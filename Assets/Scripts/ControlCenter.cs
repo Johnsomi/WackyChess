@@ -38,26 +38,37 @@ public class ControlCenter : MonoBehaviour
         
     }
 
-    public void ColorSet()
+    public void ColorSet(bool color)
     {
-       // List<Tile> tempTiles = new List<Tile>();
-        for (int i = 0; i < possibles.Count; i++)
+        if (color)
         {
-
-            var temp1 = possibles[i].Item1;
-            var temp2 = possibles[i].Item2;
-
-            for (int j = 0; j < tiles.Count; j++)
+            // List<Tile> tempTiles = new List<Tile>();
+            for (int i = 0; i < possibles.Count; i++)
             {
-                if (tiles[j].GetComponent<Tile>().tilePos.GetLength(0) == temp1 && tiles[j].GetComponent<Tile>().tilePos.GetLength(1) == temp2)
+
+                var temp1 = possibles[i].Item1;
+                var temp2 = possibles[i].Item2;
+
+                for (int j = 0; j < tiles.Count; j++)
                 {
-                    possibleMoves.Add(tiles[j].GetComponent<Tile>());
+                    if (tiles[j].GetComponent<Tile>().tilePos.GetLength(0) == temp1 && tiles[j].GetComponent<Tile>().tilePos.GetLength(1) == temp2)
+                    {
+                        possibleMoves.Add(tiles[j].GetComponent<Tile>());
+                    }
                 }
             }
+            for (int i = 0; i < possibleMoves.Count; i++)
+            {
+                possibleMoves[i].ColorChange(true);
+            }
         }
-        for (int i = 0; i < possibleMoves.Count; i++)
+        else
         {
-            possibleMoves[i].ColorChange(true);
+            for (int k = 0; k < possibleMoves.Count; k++)
+            {
+                possibleMoves[k].ColorChange(false);
+            }
+            possibleMoves.Clear();
         }
         
     }
@@ -69,6 +80,7 @@ public class ControlCenter : MonoBehaviour
         {
             if (tiles[i].bounds.Contains(pos))
             {
+                ColorSet(false);
                 if (current)
                 {
                     Check(piece, pos, tiles[i].GetComponent<Tile>());
@@ -115,11 +127,6 @@ public class ControlCenter : MonoBehaviour
                     {
                         current = null;
                     }
-                    for (int k = 0; k < possibleMoves.Count; k++)
-                    {
-                        possibleMoves[k].ColorChange(false);
-                    }
-                    possibleMoves.Clear();
                     canPlace = false;
                     break;
                 }
@@ -139,10 +146,10 @@ public class ControlCenter : MonoBehaviour
         //{
             if (possibles.Contains(new Tuple<int, int>(tile.tilePos.GetLength(0), tile.tilePos.GetLength(1))))
             {
-                possibles.Clear();
                 canPlace = true;
             }
-            //Debug.Log(possibles.Contains(new Tuple<int, int>(tile.tilePos.GetLength(0), tile.tilePos.GetLength(1))));
+        possibles.Clear();
+        //Debug.Log(possibles.Contains(new Tuple<int, int>(tile.tilePos.GetLength(0), tile.tilePos.GetLength(1))));
         //}
     }
 
