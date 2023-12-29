@@ -249,6 +249,8 @@ public class Movement : MonoBehaviour
         {
             controlCenter.current = this;
             canDrag = true;
+            GetMovement();
+            controlCenter.ColorSet();
            // DisplayMovement(moveTypes);
         }
         else

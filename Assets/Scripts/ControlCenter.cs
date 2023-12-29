@@ -38,6 +38,30 @@ public class ControlCenter : MonoBehaviour
         
     }
 
+    public void ColorSet()
+    {
+       // List<Tile> tempTiles = new List<Tile>();
+        for (int i = 0; i < possibles.Count; i++)
+        {
+
+            var temp1 = possibles[i].Item1;
+            var temp2 = possibles[i].Item2;
+
+            for (int j = 0; j < tiles.Count; j++)
+            {
+                if (tiles[j].GetComponent<Tile>().tilePos.GetLength(0) == temp1 && tiles[j].GetComponent<Tile>().tilePos.GetLength(1) == temp2)
+                {
+                    possibleMoves.Add(tiles[j].GetComponent<Tile>());
+                }
+            }
+        }
+        for (int i = 0; i < possibleMoves.Count; i++)
+        {
+            possibleMoves[i].ColorChange(true);
+        }
+        
+    }
+
     public void PositionSet(Vector2 pos, Movement piece)
     {
        // CheckForJumps(piece);
@@ -91,6 +115,11 @@ public class ControlCenter : MonoBehaviour
                     {
                         current = null;
                     }
+                    for (int k = 0; k < possibleMoves.Count; k++)
+                    {
+                        possibleMoves[k].ColorChange(false);
+                    }
+                    possibleMoves.Clear();
                     canPlace = false;
                     break;
                 }
@@ -104,7 +133,7 @@ public class ControlCenter : MonoBehaviour
         //{
 
         //}
-        piece.GetMovement();
+        //piece.GetMovement();
         // tile.tilePos
         //for (int i = 0; i < possibles.Count; i++)
         //{
