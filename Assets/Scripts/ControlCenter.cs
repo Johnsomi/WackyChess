@@ -11,6 +11,9 @@ public class ControlCenter : MonoBehaviour
     bool canPlace = true;
     public List<Tuple<int, int>> possibles = new List<Tuple<int, int>>();
     public List<Tile> possibleMoves = new List<Tile>();
+    public Canvas canvas;
+    private GameObject win;
+    [HideInInspector] public int turn = 1;
     // Start is called before the first frame update
     void Awake()
     {
@@ -18,8 +21,10 @@ public class ControlCenter : MonoBehaviour
         //{
         //    tiles.Add(tileParent.GetChild(i).GetComponent<BoxCollider>());
         //    tileParent.GetChild(i).GetComponent<Tile>().tileID = i;
-            
+
         //}
+        win = canvas.transform.Find("Win").gameObject;
+        win.SetActive(false);
         int x = 0;
         for (int i = 1; i < 9; i++)
         {
@@ -194,5 +199,18 @@ public class ControlCenter : MonoBehaviour
                        
         }
         return false;
+    }
+
+    public void ToggleWin(int color)
+    {
+        win.SetActive(true);
+        if (color == 1)
+        {
+            win.transform.Find("WhiteWin").gameObject.SetActive(false);
+        }
+        else
+        {
+            win.transform.Find("BlackWin").gameObject.SetActive(false);
+        }
     }
 }

@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour
     [HideInInspector] public List<int> abilityType;
     bool canPlace = true;
     private bool hasMoved = false;
+    [SerializeField] bool king = false; 
     private enum MovementType
     {
         King = 0,
@@ -399,39 +400,27 @@ public class Movement : MonoBehaviour
     {
         // controlCenter.pieceMoved = this.gameObject;
         //controlCenter.movingPiece = true;
-        if (controlCenter.current == null)
+        if (controlCenter.turn == pieceColor)
         {
-            controlCenter.current = this;
-            canDrag = true;
-            GetMovement();
-            controlCenter.ColorSet(true);
-           // DisplayMovement(moveTypes);
-        }
-        else
-        {
-            //CheckCanPlace(transform.position);
-            if (canDrag && canPlace && controlCenter.current == this)
+            if (controlCenter.current == null)
             {
-                // canDrag = false;
-                controlCenter.PositionSet(transform.position, this);
+                controlCenter.current = this;
+                canDrag = true;
+                GetMovement();
+                controlCenter.ColorSet(true);
+                // DisplayMovement(moveTypes);
+            }
+            else
+            {
+                //CheckCanPlace(transform.position);
+                if (canDrag && canPlace && controlCenter.current == this)
+                {
+                    // canDrag = false;
+                    controlCenter.PositionSet(transform.position, this);
+                }
             }
         }
     }
-
-    //private void OnMouseDrag()
-    //{
-    //    if (controlCenter.currentPiece == this || controlCenter.currentPiece == null)
-    //    {
-    //        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    //        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-    //        //mousePos.z = Camera.main.transform.position.z + Camera.main.nearClipPlane;
-    //        // RaycastHit2D rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
-    //        if (hit.collider != null)
-    //        {
-    //            hit.collider.transform.position = mousePos;
-    //        }
-    //    }
-    //}
 
   //  private void OnMouseUp()
   //  {
@@ -458,10 +447,17 @@ public class Movement : MonoBehaviour
         //        catch { Debug.Log("Can't see tile."); }
         //    }
         //}
-
-
-
   //  }
+
+    public void Death()
+    {
+        if (king)
+        {
+            controlCenter.ToggleWin(pieceColor);
+        }
+        // modify side display
+        Destroy(gameObject);
+    }
 
     public void Lock(Vector2 pos, Tile tile, bool take)
     {
@@ -473,6 +469,14 @@ public class Movement : MonoBehaviour
         gameObject.transform.position = pos;
         currentTile = tile;
         currentTile.SetPiece(this, take);
+        if (pieceColor == 1)
+        {
+            controlCenter.turn++;
+        }
+        else
+        {
+            controlCenter.turn--;
+        }
     }
 
     public void Return()

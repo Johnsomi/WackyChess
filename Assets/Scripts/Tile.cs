@@ -45,7 +45,8 @@ public class Tile : MonoBehaviour
     {
         if (take)
         {
-            Destroy(currentPiece.gameObject);
+            currentPiece.Death();
+            //Destroy(currentPiece.gameObject);
         }
         currentPiece = id;
         if (!taken)
