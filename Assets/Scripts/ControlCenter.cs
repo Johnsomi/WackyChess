@@ -151,10 +151,22 @@ public class ControlCenter : MonoBehaviour
         //for (int i = 0; i < possibles.Count; i++)
         //{
             if (possibles.Contains(new Tuple<int, int>(tile.tilePos.GetLength(0), tile.tilePos.GetLength(1))))
-            {
-                canPlace = true;
-            }
+        if (possibles.Contains(new Tuple<int, int>(tile.tilePos.GetLength(0), tile.tilePos.GetLength(1))))
+        {
+            canPlace = true;
+        }
         possibles.Clear();
+        if (!canPlace)
+        {
+            piece.canDrag = false;
+            piece.Return();
+            // current = null;
+        
+            if (current != null)
+            {
+                current = null;
+            }
+        }
         //Debug.Log(possibles.Contains(new Tuple<int, int>(tile.tilePos.GetLength(0), tile.tilePos.GetLength(1))));
         //}
     }
