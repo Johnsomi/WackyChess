@@ -9,13 +9,13 @@ public class Movement : MonoBehaviour
 {
     Mouse mouse;
     ControlCenter controlCenter;
-    [SerializeField] LayerMask tileLayer;
+   // [SerializeField] LayerMask tileLayer;
     [HideInInspector] public bool canDrag = false;
     public int pieceColor = 0;
     [HideInInspector] public Tile currentTile;
     public List<int> moveTypes;
     [HideInInspector] public List<int> abilityType;
-    bool canPlace = true;
+    [HideInInspector] public bool canPlace = true;
     private bool hasMoved = false;
     [SerializeField] bool king = false; 
     private enum MovementType
@@ -45,7 +45,7 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         mouse = GameObject.Find("Mouse").GetComponent<Mouse>();
-        tileLayer = LayerMask.NameToLayer("Tile");
+       // tileLayer = LayerMask.NameToLayer("Tile");
         controlCenter = GameObject.Find("ControlCenter").GetComponent<ControlCenter>();
     }
 
@@ -91,10 +91,6 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void DisplayMovement(List<int> movements)
-    {
-
-    }
 
     public void GetMovement()
     {
@@ -130,10 +126,6 @@ public class Movement : MonoBehaviour
 
     }
 
-    void CheckForJumps(Tile tile)
-    {
-
-    }
 
     void PawnMove()
     {
@@ -396,58 +388,58 @@ public class Movement : MonoBehaviour
     //    return true;
     //}
 
-    private void OnMouseDown()
-    {
-        // controlCenter.pieceMoved = this.gameObject;
-        //controlCenter.movingPiece = true;
-        if (controlCenter.turn == pieceColor)
-        {
-            if (controlCenter.current == null)
-            {
-                controlCenter.current = this;
-                canDrag = true;
-                GetMovement();
-                controlCenter.ColorSet(true);
-                // DisplayMovement(moveTypes);
-            }
-            else
-            {
-                //CheckCanPlace(transform.position);
-                if (canDrag && canPlace && controlCenter.current == this)
-                {
-                    // canDrag = false;
-                    controlCenter.PositionSet(transform.position, this);
-                }
-            }
-        }
-    }
+    //private void OnMouseDown()
+    //{
+    //    // controlCenter.pieceMoved = this.gameObject;
+    //    //controlCenter.movingPiece = true;
+    //    if (controlCenter.turn == pieceColor)
+    //    {
+    //        if (controlCenter.current == null)
+    //        {
+    //            controlCenter.current = this;
+    //            canDrag = true;
+    //            GetMovement();
+    //            controlCenter.ColorSet(true);
+    //            // DisplayMovement(moveTypes);
+    //        }
+    //        else
+    //        {
+    //            //CheckCanPlace(transform.position);
+    //            if (canDrag && canPlace && controlCenter.current == this)
+    //            {
+    //                // canDrag = false;
+    //                controlCenter.PositionSet(transform.position, this);
+    //            }
+    //        }
+    //    }
+    //}
 
-  //  private void OnMouseUp()
-  //  {
-       // canDrag = false;
-      //  controlCenter.PositionSet(transform.position);
+    //  private void OnMouseUp()
+    //  {
+    // canDrag = false;
+    //  controlCenter.PositionSet(transform.position);
 
 
 
-        //controlCenter.movingPiece = false;
-        //Vector2 hitpos = Camera.main.ScreenToWorldPoint(gameObject.transform.position);
+    //controlCenter.movingPiece = false;
+    //Vector2 hitpos = Camera.main.ScreenToWorldPoint(gameObject.transform.position);
 
-        // GetComponent<BoxCollider2D>().autoTiling = true;
-        //RaycastHit hit;
-        
-        //if (Physics.Raycast(gameObject.transform.position, Vector3.back, out hit, Mathf.Infinity, tileLayer))
-        //{
-        //    if (hit.collider != null)
-        //    {
-        //        try
-        //        {
-        //            tile = hit.collider.gameObject.GetComponent<Tile>();
-        //            gameObject.transform.position.Set(tile.transform.position.x, tile.transform.position.y, transform.position.z);
-        //        }
-        //        catch { Debug.Log("Can't see tile."); }
-        //    }
-        //}
-  //  }
+    // GetComponent<BoxCollider2D>().autoTiling = true;
+    //RaycastHit hit;
+
+    //if (Physics.Raycast(gameObject.transform.position, Vector3.back, out hit, Mathf.Infinity, tileLayer))
+    //{
+    //    if (hit.collider != null)
+    //    {
+    //        try
+    //        {
+    //            tile = hit.collider.gameObject.GetComponent<Tile>();
+    //            gameObject.transform.position.Set(tile.transform.position.x, tile.transform.position.y, transform.position.z);
+    //        }
+    //        catch { Debug.Log("Can't see tile."); }
+    //    }
+    //}
+    //  }
 
     public void Death()
     {
