@@ -140,22 +140,22 @@ public class Movement : MonoBehaviour
         int x = (currentTile.tilePos.GetLength(1));
         if (pieceColor == 1)
         {
-            controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x));
-            controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x + 1));
-            controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x - 1));
+            controlCenter.CheckForJump(new Tuple<int, int>(y + 1, x), this, true);
+            controlCenter.CheckForJump(new Tuple<int, int>(y + 1, x + 1), this, false);
+            controlCenter.CheckForJump(new Tuple<int, int>(y + 1, x - 1), this, false);
             if (!hasMoved)
             {
-                controlCenter.possibles.Add(new Tuple<int, int>(y + 2, x));
+                controlCenter.CheckForJump(new Tuple<int, int>(y + 2, x), this, true);
             }
         }
         else
         {
-            controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x));
-            controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x + 1));
-            controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x - 1));
+            controlCenter.CheckForJump(new Tuple<int, int>(y - 1, x), this, true);
+            controlCenter.CheckForJump(new Tuple<int, int>(y - 1, x + 1), this, false);
+            controlCenter.CheckForJump(new Tuple<int, int>(y - 1, x - 1), this, false);
             if (!hasMoved)
             {
-                controlCenter.possibles.Add(new Tuple<int, int>(y - 2, x));
+                controlCenter.CheckForJump(new Tuple<int, int>(y - 2, x), this, true);
             }
         }
     }
@@ -165,14 +165,14 @@ public class Movement : MonoBehaviour
         int y = (currentTile.tilePos.GetLength(0));
         int x = (currentTile.tilePos.GetLength(1));
 
-        controlCenter.possibles.Add(new Tuple<int, int>(y + 2, x + 1));
-        controlCenter.possibles.Add(new Tuple<int, int>(y + 2, x - 1));
-        controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x + 2));
-        controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x + 2));
-        controlCenter.possibles.Add(new Tuple<int, int>(y - 2, x + 1));
-        controlCenter.possibles.Add(new Tuple<int, int>(y - 2, x - 1));
-        controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x - 2));
-        controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x - 2));
+        controlCenter.CheckForJump(new Tuple<int, int>(y + 2, x + 1), this, false);
+        controlCenter.CheckForJump(new Tuple<int, int>(y + 2, x - 1), this, false);
+        controlCenter.CheckForJump(new Tuple<int, int>(y + 1, x + 2), this, false);
+        controlCenter.CheckForJump(new Tuple<int, int>(y - 1, x + 2), this, false);
+        controlCenter.CheckForJump(new Tuple<int, int>(y - 2, x + 1), this, false);
+        controlCenter.CheckForJump(new Tuple<int, int>(y - 2, x - 1), this, false);
+        controlCenter.CheckForJump(new Tuple<int, int>(y + 1, x - 2), this, false);
+        controlCenter.CheckForJump(new Tuple<int, int>(y - 1, x - 2), this, false);
     }
 
     void LineMove(int dir)
@@ -183,38 +183,173 @@ public class Movement : MonoBehaviour
         {
             // Omni
             case 0:
-                for (int i = 0; i < 9; i++)
+                //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x + i));
+                for (int i = 1; i < 9; i++)
                 {
-                    controlCenter.possibles.Add(new Tuple<int, int>(y + i, x + i));
-                    controlCenter.possibles.Add(new Tuple<int, int>(y, x + i));
-                    controlCenter.possibles.Add(new Tuple<int, int>(y - i, x + i));
-                    controlCenter.possibles.Add(new Tuple<int, int>(y - i, x));
-                    controlCenter.possibles.Add(new Tuple<int, int>(y - i, x - i));
-                    controlCenter.possibles.Add(new Tuple<int, int>(y, x - i));
-                    controlCenter.possibles.Add(new Tuple<int, int>(y + i, x - i));
-                    controlCenter.possibles.Add(new Tuple<int, int>(y + i, x));
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y + i, x + i), this, false) == true)
+                    {
+                        break;
+                    }
+                    
                 }
+                //controlCenter.possibles.Add(new Tuple<int, int>(y, x + i));
+                for (int i = 1; i < 9; i++)
+                {
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y, x + i), this, false) == true)
+                    {
+                        break;
+                    }
+                    
+                }
+                //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x + i));
+                for (int i = 1; i < 9; i++)
+                {
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y - i, x + i), this, false) == true)
+                    {
+                        break;
+                    }
+                    
+                }
+                //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x));
+                for (int i = 1; i < 9; i++)
+                {
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y - i, x), this, false) == true)
+                    {
+                        break;
+                    }
+
+                }
+                //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x - i));
+                for (int i = 1; i < 9; i++)
+                {
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y - i, x - i), this, false) == true)
+                    {
+                        break;
+                    }
+
+                }
+                //controlCenter.possibles.Add(new Tuple<int, int>(y, x - i));
+                for (int i = 1; i < 9; i++)
+                {
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y, x - i), this, false) == true)
+                    {
+                        break;
+                    }
+
+                }
+                //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x - i));
+                for (int i = 1; i < 9; i++)
+                {
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y + i, x - i), this, false) == true)
+                    {
+                        break;
+                    }
+
+                }
+                //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x));
+                for (int i = 1; i < 9; i++)
+                {
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y + i, x), this, false) == true)
+                    {
+                        break;
+                    }
+
+                }                                            
                 break;
 
             // Hor / Ver
             case 1:
-                for (int i = 0; i < 9; i++)
+                //controlCenter.possibles.Add(new Tuple<int, int>(y, x + i));
+                for (int i = 1; i < 9; i++)
                 {
-                    controlCenter.possibles.Add(new Tuple<int, int>(y, x + i));
-                    controlCenter.possibles.Add(new Tuple<int, int>(y - i, x));
-                    controlCenter.possibles.Add(new Tuple<int, int>(y, x - i));
-                    controlCenter.possibles.Add(new Tuple<int, int>(y + i, x));
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y, x + i), this, false) == true)
+                    {
+                        break;
+                    }
+
+                }
+                //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x));
+                for (int i = 1; i < 9; i++)
+                {
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y - i, x), this, false) == true)
+                    {
+                        break;
+                    }
+
+                }
+                //controlCenter.possibles.Add(new Tuple<int, int>(y, x - i));
+                for (int i = 1; i < 9; i++)
+                {
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y, x - i), this, false) == true)
+                    {
+                        break;
+                    }
+
+                }
+                //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x));
+                for (int i = 1; i < 9; i++)
+                {
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y + i, x), this, false) == true)
+                    {
+                        break;
+                    }
+
                 }
                 break;
 
             // Diag
             case 2:
-                for (int i = 0; i < 9; i++)
+                //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x + i));
+                for (int i = 1; i < 9; i++)
                 {
-                    controlCenter.possibles.Add(new Tuple<int, int>(y + i, x + i));
-                    controlCenter.possibles.Add(new Tuple<int, int>(y - i, x + i));
-                    controlCenter.possibles.Add(new Tuple<int, int>(y - i, x - i));
-                    controlCenter.possibles.Add(new Tuple<int, int>(y + i, x - i));
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y + i, x + i), this, false) == true)
+                    {
+                        break;
+                    }
+
+                }
+                //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x + i));
+                for (int i = 1; i < 9; i++)
+                {
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y - i, x + i), this, false) == true)
+                    {
+                        break;
+                    }
+
+                }
+                //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x - i));
+                for (int i = 1; i < 9; i++)
+                {
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y - i, x - i), this, false) == true)
+                    {
+                        break;
+                    }
+
+                }
+                //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x - i));
+                for (int i = 1; i < 9; i++)
+                {
+
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y + i, x - i), this, false) == true)
+                    {
+                        break;
+                    }
+
                 }
                 break;
         }
@@ -226,14 +361,14 @@ public class Movement : MonoBehaviour
         int y = (currentTile.tilePos.GetLength(0));
         int x = (currentTile.tilePos.GetLength(1));
 
-        controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x + 1));
-        controlCenter.possibles.Add(new Tuple<int, int>(y, x + 1));
-        controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x + 1));
-        controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x));
-        controlCenter.possibles.Add(new Tuple<int, int>(y - 1, x - 1));
-        controlCenter.possibles.Add(new Tuple<int, int>(y, x - 1));
-        controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x - 1));
-        controlCenter.possibles.Add(new Tuple<int, int>(y + 1, x));
+        controlCenter.CheckForJump(new Tuple<int, int>(y + 1, x + 1), this, false);
+        controlCenter.CheckForJump(new Tuple<int, int>(y, x + 1), this, false);
+        controlCenter.CheckForJump(new Tuple<int, int>(y - 1, x + 1), this, false);
+        controlCenter.CheckForJump(new Tuple<int, int>(y - 1, x), this, false);
+        controlCenter.CheckForJump(new Tuple<int, int>(y - 1, x - 1), this, false);
+        controlCenter.CheckForJump(new Tuple<int, int>(y, x - 1), this, false);
+        controlCenter.CheckForJump(new Tuple<int, int>(y + 1, x - 1), this, false);
+        controlCenter.CheckForJump(new Tuple<int, int>(y + 1, x), this, false);
     }
 
     //public bool CheckCanPlace(Vector2 pos)

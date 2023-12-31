@@ -53,6 +53,7 @@ public class ControlCenter : MonoBehaviour
                 {
                     if (tiles[j].GetComponent<Tile>().tilePos.GetLength(0) == temp1 && tiles[j].GetComponent<Tile>().tilePos.GetLength(1) == temp2)
                     {
+
                         possibleMoves.Add(tiles[j].GetComponent<Tile>());
                     }
                 }
@@ -151,6 +152,38 @@ public class ControlCenter : MonoBehaviour
         possibles.Clear();
         //Debug.Log(possibles.Contains(new Tuple<int, int>(tile.tilePos.GetLength(0), tile.tilePos.GetLength(1))));
         //}
+    }
+
+    public bool CheckForJump(Tuple<int, int> tuple, Movement piece, bool FalseAttack)
+    {
+        var temp1 = tuple.Item1;
+        var temp2 = tuple.Item2;
+
+        for (int j = 0; j < tiles.Count; j++)
+        {
+            var tile = tiles[j].GetComponent<Tile>();
+
+            if (tile.tilePos.GetLength(0) == temp1 && tile.tilePos.GetLength(1) == temp2)
+            {
+                if (tile.taken)
+                {
+                    if (tile.currentPiece.pieceColor != piece.pieceColor && !FalseAttack)
+                    {
+                        possibles.Add(tuple);
+                    }
+                    // Stop search in that direction
+                    return true;
+                    //possibles.Remove(tuple);
+                }
+                else
+                {
+                    possibles.Add(tuple);
+                    return false;
+                }
+            }
+                       
+        }
+        return false;
     }
 
     void CheckForJumps(Movement piece)
