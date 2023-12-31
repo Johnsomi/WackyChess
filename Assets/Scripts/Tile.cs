@@ -9,6 +9,7 @@ public class Tile : MonoBehaviour
     public bool taken = false;
     public Material shadeMat = null;
     public Material clearMat = null;
+    public int promotionType = 0;
 
     //[HideInInspector] public int tileID = -1;
     public int[,] tilePos = new int[0, 0];

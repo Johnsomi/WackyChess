@@ -194,6 +194,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 1
   currentPiece: {fileID: 0}
 --- !u!33 &119134219
 MeshFilter:
@@ -316,6 +317,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &131787806
 MeshFilter:
@@ -508,6 +510,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &205878835
 MeshFilter:
@@ -630,6 +633,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &213195055
 MeshFilter:
@@ -1063,6 +1067,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &272180160
 MeshFilter:
@@ -1185,6 +1190,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &320431054
 MeshFilter:
@@ -1307,6 +1313,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 2
   currentPiece: {fileID: 0}
 --- !u!33 &378600147
 MeshFilter:
@@ -1429,6 +1436,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &381142227
 MeshFilter:
@@ -1551,6 +1559,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 1
   currentPiece: {fileID: 0}
 --- !u!33 &387149902
 MeshFilter:
@@ -1813,6 +1822,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &466053595
 MeshFilter:
@@ -1935,6 +1945,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &471796145
 MeshFilter:
@@ -2127,6 +2138,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &488951615
 MeshFilter:
@@ -2249,6 +2261,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 2
   currentPiece: {fileID: 0}
 --- !u!33 &515862348
 MeshFilter:
@@ -2371,6 +2384,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &517193988
 MeshFilter:
@@ -2655,6 +2669,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &531040593
 MeshFilter:
@@ -2777,6 +2792,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &546690253
 MeshFilter:
@@ -2969,6 +2985,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 2
   currentPiece: {fileID: 0}
 --- !u!33 &577218598
 MeshFilter:
@@ -3161,6 +3178,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &588110209
 MeshFilter:
@@ -3353,6 +3371,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &620514008
 MeshFilter:
@@ -3615,6 +3634,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &690243213
 MeshFilter:
@@ -3737,6 +3757,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &706259028
 MeshFilter:
@@ -3859,6 +3880,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &710340739
 MeshFilter:
@@ -4051,6 +4073,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &727674111
 MeshFilter:
@@ -4173,6 +4196,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &739826195
 MeshFilter:
@@ -4435,6 +4459,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 1
   currentPiece: {fileID: 0}
 --- !u!33 &753863929
 MeshFilter:
@@ -4557,6 +4582,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &811769060
 MeshFilter:
@@ -4679,6 +4705,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &840355689
 MeshFilter:
@@ -4801,6 +4828,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &843957226
 MeshFilter:
@@ -4923,6 +4951,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 2
   currentPiece: {fileID: 0}
 --- !u!33 &867203111
 MeshFilter:
@@ -5115,6 +5144,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &883680634
 MeshFilter:
@@ -5307,6 +5337,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &995464710
 MeshFilter:
@@ -5521,6 +5552,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1065495798
 MeshFilter:
@@ -5831,6 +5863,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1175530551
 MeshFilter:
@@ -5953,6 +5986,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1178919366
 MeshFilter:
@@ -6075,6 +6109,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1204213708
 MeshFilter:
@@ -6197,6 +6232,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 2
   currentPiece: {fileID: 0}
 --- !u!33 &1212533643
 MeshFilter:
@@ -6319,6 +6355,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1223038278
 MeshFilter:
@@ -6441,6 +6478,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 1
   currentPiece: {fileID: 0}
 --- !u!33 &1321913384
 MeshFilter:
@@ -6633,6 +6671,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 1
   currentPiece: {fileID: 0}
 --- !u!33 &1349594678
 MeshFilter:
@@ -6755,6 +6794,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1387066456
 MeshFilter:
@@ -6877,6 +6917,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 1
   currentPiece: {fileID: 0}
 --- !u!33 &1397093561
 MeshFilter:
@@ -7069,6 +7110,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 1
   currentPiece: {fileID: 0}
 --- !u!33 &1461715964
 MeshFilter:
@@ -7291,6 +7333,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1522435116
 MeshFilter:
@@ -7413,6 +7456,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1527527384
 MeshFilter:
@@ -7535,6 +7579,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1539867776
 MeshFilter:
@@ -7657,6 +7702,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1586390771
 MeshFilter:
@@ -7779,6 +7825,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1610434241
 MeshFilter:
@@ -7971,6 +8018,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 2
   currentPiece: {fileID: 0}
 --- !u!33 &1735989101
 MeshFilter:
@@ -8093,6 +8141,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1783789765
 MeshFilter:
@@ -8425,6 +8474,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1876569481
 MeshFilter:
@@ -8547,6 +8597,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1877522221
 MeshFilter:
@@ -8739,6 +8790,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 1
   currentPiece: {fileID: 0}
 --- !u!33 &1916195999
 MeshFilter:
@@ -8861,6 +8913,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1933156125
 MeshFilter:
@@ -8983,6 +9036,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1944404311
 MeshFilter:
@@ -9175,6 +9229,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1953125875
 MeshFilter:
@@ -9297,6 +9352,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1953874924
 MeshFilter:
@@ -9419,6 +9475,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &1980595486
 MeshFilter:
@@ -9541,6 +9598,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 2
   currentPiece: {fileID: 0}
 --- !u!33 &2000372530
 MeshFilter:
@@ -9663,6 +9721,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &2010906142
 MeshFilter:
@@ -9855,6 +9914,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 2
   currentPiece: {fileID: 0}
 --- !u!33 &2025883375
 MeshFilter:
@@ -10047,6 +10107,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &2076594188
 MeshFilter:
@@ -10169,6 +10230,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &2090557906
 MeshFilter:
@@ -10361,6 +10423,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &2144605512
 MeshFilter:
@@ -10483,6 +10546,7 @@ MonoBehaviour:
   taken: 0
   shadeMat: {fileID: 2100000, guid: ddd0fbd12ad60714a82b455f2659194d, type: 2}
   clearMat: {fileID: 2100000, guid: e49cd8098a405e040b1722a169eedc0d, type: 2}
+  promotionType: 0
   currentPiece: {fileID: 0}
 --- !u!33 &2146518505
 MeshFilter:

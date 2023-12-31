@@ -156,6 +156,11 @@ public class ControlCenter : MonoBehaviour
 
     public bool CheckForJump(Tuple<int, int> tuple, Movement piece, bool FalseAttack)
     {
+        bool digAttack = false;
+        if (piece.abilityType.Contains(11))
+        {
+            digAttack = true;
+        }
         var temp1 = tuple.Item1;
         var temp2 = tuple.Item2;
 
@@ -167,13 +172,18 @@ public class ControlCenter : MonoBehaviour
             {
                 if (tile.taken)
                 {
-                    if (tile.currentPiece.pieceColor != piece.pieceColor && !FalseAttack)
+                    if (tile.currentPiece.pieceColor != piece.pieceColor && (!FalseAttack || digAttack))
                     {
                         possibles.Add(tuple);
+                        
                     }
                     // Stop search in that direction
                     return true;
                     //possibles.Remove(tuple);
+                }
+                else if (piece.moveTypes.Contains(5) && !FalseAttack)
+                {
+                    return false;
                 }
                 else
                 {
@@ -184,40 +194,5 @@ public class ControlCenter : MonoBehaviour
                        
         }
         return false;
-    }
-
-    void CheckForJumps(Movement piece)
-    {
-        //if (!piece.abilityType.Contains(11))
-        //{
-        //    List<Tile> tempTiles = new List<Tile>();
-        //    List<Tile> takenTiles = new List<Tile>();
-        //    for (int i = 0; i < possibles.Count; i++)
-        //    {
-        //        var temp1 = possibles[i].Item1;
-        //        var temp2 = possibles[i].Item2;
-
-        //        for (int j = 0; j < tiles.Count; j++)
-        //        {
-        //            if (tiles[j].GetComponent<Tile>().tilePos.GetLength(0) == temp1 && tiles[j].GetComponent<Tile>().tilePos.GetLength(1) == temp2)
-        //            {
-        //                tempTiles.Add(tiles[j].GetComponent<Tile>());
-        //                if (tiles[j].GetComponent<Tile>().taken == true)
-        //                {
-        //                    takenTiles.Add(tiles[j].GetComponent<Tile>());
-        //                }
-        //            }
-        //        }
-        //    }
-        //    for (int i = 0; i < tempTiles.Count; i++)
-        //    {
-        //        for (int j = 0; j < takenTiles.Count; j++) {
-        //            if (tempTiles[i].tilePos.GetLength(0) < takenTiles[j].tilePos.GetLength(0))
-        //            {
-        //                break;
-        //            }
-        //        }
-        //    }
-        //}
     }
 }

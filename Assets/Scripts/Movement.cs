@@ -140,23 +140,41 @@ public class Movement : MonoBehaviour
         int x = (currentTile.tilePos.GetLength(1));
         if (pieceColor == 1)
         {
-            controlCenter.CheckForJump(new Tuple<int, int>(y + 1, x), this, true);
-            controlCenter.CheckForJump(new Tuple<int, int>(y + 1, x + 1), this, false);
-            controlCenter.CheckForJump(new Tuple<int, int>(y + 1, x - 1), this, false);
             if (!hasMoved)
             {
-                controlCenter.CheckForJump(new Tuple<int, int>(y + 2, x), this, true);
+                for (int i = 1; i < 3; i++)
+                {
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y + i, x), this, true) == true)
+                    {
+                        break;
+                    }
+                }
             }
+            else
+            {
+                controlCenter.CheckForJump(new Tuple<int, int>(y + 1, x), this, true);
+            }
+            controlCenter.CheckForJump(new Tuple<int, int>(y + 1, x + 1), this, false);
+            controlCenter.CheckForJump(new Tuple<int, int>(y + 1, x - 1), this, false);
         }
         else
         {
-            controlCenter.CheckForJump(new Tuple<int, int>(y - 1, x), this, true);
-            controlCenter.CheckForJump(new Tuple<int, int>(y - 1, x + 1), this, false);
-            controlCenter.CheckForJump(new Tuple<int, int>(y - 1, x - 1), this, false);
             if (!hasMoved)
             {
-                controlCenter.CheckForJump(new Tuple<int, int>(y - 2, x), this, true);
+                for (int i = 1; i < 3; i++)
+                {
+                    if (controlCenter.CheckForJump(new Tuple<int, int>(y - i, x), this, true) == true)
+                    {
+                        break;
+                    }
+                }
             }
+            else
+            {
+                controlCenter.CheckForJump(new Tuple<int, int>(y - 1, x), this, true);
+            }
+            controlCenter.CheckForJump(new Tuple<int, int>(y - 1, x + 1), this, false);
+            controlCenter.CheckForJump(new Tuple<int, int>(y - 1, x - 1), this, false);
         }
     }
 
