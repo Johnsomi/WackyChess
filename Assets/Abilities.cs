@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Abilities : MonoBehaviour
 {
@@ -25,7 +26,16 @@ public class Abilities : MonoBehaviour
         Freeze = 8,
         Conqueror = 9,
         Devolve = 10,
-        Draft = 11
+        Draft = 11,
+        Goliath = 12,
+        Immunity = 13,
+        Order66 = 14,
+        Oath = 15, // Oath to the crown
+        Henry = 16, // Off with her head
+        FastPromote = 17,
+        Empower = 18,
+        SelfSacrifice = 19,
+        Guardian = 20,
     }
     // Start is called before the first frame update
     void Start()
@@ -149,6 +159,33 @@ public class Abilities : MonoBehaviour
 
             case 11:
                 return "Draft";
+
+            case 12:
+                return "Goliath";
+
+            case 13:
+                return "Immunity";
+
+            case 14:
+                return "Order 66";
+
+            case 15:
+                return "Oath to the king";
+
+            case 16:
+                return "Off with her head";
+
+            case 17:
+                return "Quick Promotion";
+
+            case 18:
+                return "Empower";
+
+            case 19:
+                return "Self Sacrifice";
+
+            case 20:
+                return "Guardian";
         }
         return null;
     }
@@ -203,7 +240,43 @@ public class Abilities : MonoBehaviour
 
             case 11:
                 break;
-                //return "Draft";
+            //return "Draft";
+
+            case 12:
+                // return "Goliath";
+                break;
+
+            case 13:
+                //return "Immunity";
+                break;
+
+            case 14:
+                // return "Order 66";
+                break;
+
+            case 15:
+                //return "Oath to the king";
+                break;
+
+            case 16:
+                //return "Off with her head";
+                break;
+
+            case 17:
+                // return "Quick Promotion";
+                break;
+
+            case 18:
+                //return "Empower";
+                break;
+
+            case 19:
+                //return "Self Sacrifice";
+                break;
+
+            case 20:
+                //return "Guardian";
+                break;
         }
         CloseAbilities();
     }
