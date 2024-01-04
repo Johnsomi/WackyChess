@@ -152,8 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150c53d399ea9774ead4438cb0ff4258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlCenter: {fileID: 1093003491}
   piece: {fileID: 0}
-  abilities: 
+  abilities: 21
   buttonOne: {fileID: 930216576}
   buttonTwo: {fileID: 1558290728}
   buttonClose: {fileID: 1768961650}

@@ -56,7 +56,7 @@ public class Tile : MonoBehaviour
 
     public void TryDisplay()
     {
-        if (currentPiece != null)
+        if (currentPiece != null && currentPiece.pieceColor == controlCenter.turn)
         {
             currentPiece.abilities.piece = currentPiece;
             currentPiece.abilities.ShowAbilities();

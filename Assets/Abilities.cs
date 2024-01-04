@@ -4,12 +4,13 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.EventSystems.EventTrigger;
+//using UnityEngine.UIElements;
 
 public class Abilities : MonoBehaviour
 {
+    [SerializeField] ControlCenter controlCenter;
     public Movement piece;
-    //public List<int> abilities = new List<int>();
+    public int abilities = 21;
     public Button buttonOne;
     public Button buttonTwo;
     public Button buttonClose;
@@ -56,7 +57,8 @@ public class Abilities : MonoBehaviour
         int count = piece.abilityType.Count;
         if (count == 0)
         {
-            int random = Random.Range(0, 12);
+            
+            int random = Random.Range(0, abilities);
             piece.abilityType.Add(random);
         }
         else if (count == 1)
@@ -65,7 +67,7 @@ public class Abilities : MonoBehaviour
             while (t)
             {
                 int currentAbility = piece.abilityType[0];
-                int random = Random.Range(0, 12);
+                int random = Random.Range(0, abilities);
                 if (currentAbility != random)
                 {
                     piece.abilityType.Add(random);
@@ -102,12 +104,30 @@ public class Abilities : MonoBehaviour
     {
         int ability = piece.abilityType[0];
         AbilityAction(ability);
+        if (piece.pieceColor == 1)
+        {
+            controlCenter.turn++;
+        }
+        else
+        {
+            controlCenter.turn--;
+        }
+        CloseAbilities();
     }
 
     public void ActivateAbilityTwo()
     {
         int ability = piece.abilityType[1];
         AbilityAction(ability);
+        if (piece.pieceColor == 1)
+        {
+            controlCenter.turn++;
+        }
+        else
+        {
+            controlCenter.turn--;
+        }
+        CloseAbilities();
     }
 
     public void CloseAbilities()
@@ -278,6 +298,5 @@ public class Abilities : MonoBehaviour
                 //return "Guardian";
                 break;
         }
-        CloseAbilities();
     }
 }
