@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -57,8 +58,9 @@ public class Abilities : MonoBehaviour
         int count = piece.abilityType.Count;
         if (count == 0)
         {
-            
-            int random = Random.Range(0, abilities);
+
+            //int random = UnityEngine.Random.Range(0, abilities);
+            int random = 1;
             piece.abilityType.Add(random);
         }
         else if (count == 1)
@@ -67,7 +69,7 @@ public class Abilities : MonoBehaviour
             while (t)
             {
                 int currentAbility = piece.abilityType[0];
-                int random = Random.Range(0, abilities);
+                int random = UnityEngine.Random.Range(0, abilities);
                 if (currentAbility != random)
                 {
                     piece.abilityType.Add(random);
@@ -104,14 +106,15 @@ public class Abilities : MonoBehaviour
     {
         int ability = piece.abilityType[0];
         AbilityAction(ability);
-        if (piece.pieceColor == 1)
-        {
-            controlCenter.turn++;
-        }
-        else
-        {
-            controlCenter.turn--;
-        }
+        piece.abilityActive = true;
+        //if (piece.pieceColor == 1)
+        //{
+        //    controlCenter.turn++;
+        //}
+        //else
+        //{
+        //    controlCenter.turn--;
+        //}
         CloseAbilities();
     }
 
@@ -119,14 +122,15 @@ public class Abilities : MonoBehaviour
     {
         int ability = piece.abilityType[1];
         AbilityAction(ability);
-        if (piece.pieceColor == 1)
-        {
-            controlCenter.turn++;
-        }
-        else
-        {
-            controlCenter.turn--;
-        }
+        piece.abilityActive = true;
+        //if (piece.pieceColor == 1)
+        //{
+        //    controlCenter.turn++;
+        //}
+        //else
+        //{
+        //    controlCenter.turn--;
+        //}
         CloseAbilities();
     }
 
@@ -137,7 +141,10 @@ public class Abilities : MonoBehaviour
         buttonOne.gameObject.SetActive(false);
         buttonTwo.gameObject.SetActive(false);
         buttonClose.gameObject.SetActive(false);
-        piece = null;
+        if (!piece.abilityActive)
+        {
+            piece = null;
+        }
     }
 
     string DisplayAbilityName(int ability)
@@ -220,6 +227,8 @@ public class Abilities : MonoBehaviour
 
             case 1:
                 //return "Shoot";
+                piece.usedAbility = 1;
+                Shoot();
                 break;
 
             case 2:
@@ -298,5 +307,106 @@ public class Abilities : MonoBehaviour
                 //return "Guardian";
                 break;
         }
+    }
+
+    public void UseAbility(int ability, Tile Target)
+    {
+        if (ability == 1)
+        {
+            controlCenter.TargetSet(piece, Target.transform.position, ability);
+        }
+    }
+
+    void Shoot()
+    {
+        int y = (piece.currentTile.tilePos.GetLength(0));
+        int x = (piece.currentTile.tilePos.GetLength(1));
+
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x + i), piece, false) == true)
+            {
+                break;
+            }
+        }
+        //controlCenter.possibles.Add(new Tuple<int, int>(y, x + i));
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y, x + i), piece, false) == true)
+            {
+                break;
+            }
+        }
+        //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x + i));
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x + i), piece, false) == true)
+            {
+                break;
+            }
+        }
+        //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x));
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x), piece, false) == true)
+            {
+                break;
+            }
+        }
+        //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x - i));
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x - i), piece, false) == true)
+            {
+                break;
+            }
+        }
+        //controlCenter.possibles.Add(new Tuple<int, int>(y, x - i));
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y, x - i), piece, false) == true)
+            {
+                break;
+            }
+        }
+        //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x - i));
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x - i), piece, false) == true)
+            {
+                break;
+            }
+        }
+        //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x));
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x), piece, false) == true)
+            {
+                break;
+            }
+        }
+        controlCenter.ColorSet(true);
+    }
+
+    public void FireShot(Tile tile)
+    {
+        tile.SetPiece(null, true);
+        EndAbility();
+    }
+
+    void EndAbility()
+    {
+        piece.abilityActive = false;
+        controlCenter.possibles.Clear();
+        controlCenter.ColorSet(false);
+        if (piece.pieceColor == 1)
+        {
+            controlCenter.turn++;
+        }
+        else
+        {
+            controlCenter.turn--;
+        }
+        piece = null;
     }
 }

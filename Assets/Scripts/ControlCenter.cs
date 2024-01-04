@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class ControlCenter : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class ControlCenter : MonoBehaviour
     public Canvas canvas;
     private GameObject win;
     [HideInInspector] public int turn = 1;
+
+
+    public Abilities abilities;
+    bool canTarget = true;
     // Start is called before the first frame update
     void Awake()
     {
@@ -77,6 +82,36 @@ public class ControlCenter : MonoBehaviour
             possibleMoves.Clear();
         }
         
+    }
+
+    public void TargetSet(Movement piece, Vector2 pos, int ability)
+    {
+        for (int i = 0; i < tiles.Count; i++)
+        {
+            if (tiles[i].bounds.Contains(pos))
+            {
+                ColorSet(false);
+                if (abilities.piece)
+                {
+                    Check(piece, pos, tiles[i].GetComponent<Tile>());
+                }
+                else { canTarget = true; }
+                if (canTarget)
+                {
+
+                    //tiles[i].GetComponent<Tile>().SetPiece(piece, false);
+                    piece.abilities.FireShot(tiles[i].GetComponent<Tile>());
+                    //current = null;
+                    
+                    if (current != null)
+                    {
+                        current = null;
+                    }
+                    canTarget = false;
+                    break;
+                }
+            }
+        }
     }
 
     public void PositionSet(Vector2 pos, Movement piece)
@@ -153,6 +188,7 @@ public class ControlCenter : MonoBehaviour
         if (possibles.Contains(new Tuple<int, int>(tile.tilePos.GetLength(0), tile.tilePos.GetLength(1))))
         {
             canPlace = true;
+            canTarget = true;
         }
         possibles.Clear();
         if (!canPlace)
@@ -161,6 +197,16 @@ public class ControlCenter : MonoBehaviour
             piece.Return();
             // current = null;
         
+            if (current != null)
+            {
+                current = null;
+            }
+        }
+        else if (!canTarget)
+        {
+            piece.Return();
+            // current = null;
+
             if (current != null)
             {
                 current = null;
@@ -224,4 +270,47 @@ public class ControlCenter : MonoBehaviour
             win.transform.Find("BlackWin").gameObject.SetActive(false);
         }
     }
+
+    public bool CheckForTarget(Tuple<int, int> tuple, Movement piece, bool friendly)
+    {
+        //bool digAttack = false;
+        //if (piece.abilityType.Contains(0))
+        //{
+        //    digAttack = true;
+        //}
+        var temp1 = tuple.Item1;
+        var temp2 = tuple.Item2;
+
+        for (int j = 0; j < tiles.Count; j++)
+        {
+            var tile = tiles[j].GetComponent<Tile>();
+
+            if (tile.tilePos.GetLength(0) == temp1 && tile.tilePos.GetLength(1) == temp2)
+            {
+                if (tile.taken)
+                {
+                    if (tile.currentPiece.pieceColor != piece.pieceColor && !friendly)// || digAttack))
+                    {
+                        possibles.Add(tuple);
+                    }
+                    else if (tile.currentPiece.pieceColor == piece.pieceColor && friendly)
+                    {
+                        possibles.Add(tuple);
+                    }
+                        // Stop search in that direction
+                    return true;
+                    //possibles.Remove(tuple);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+        }
+        return false;
+    }
+
+
+
 }
