@@ -27,7 +27,40 @@ public class Tile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //if (Input.GetMouseButtonDown(1) && controlCenter.current == null) // right click
+        //{
+        //    if (currentPiece != null)
+        //    {
+        //        currentPiece.abilities.piece = currentPiece;
+        //        currentPiece.abilities.ShowAbilities();
+        //    }
+        //}
+
+        //if (Input.GetMouseButtonDown(1) && controlCenter.current == null)
+        //{
+        //    if (currentPiece != null)
+        //    {
+        //        Vector3 mousePosition = Input.mousePosition;
+        //        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+        //        if (Physics.Raycast(ray, out RaycastHit hit))
+        //        {
+        //            // Use the hit variable to determine what was clicked on.
+        //            if (hit.collider != null)
+        //            {
+        //                Debug.Log(hit.collider);
+        //            }
+        //        }
+        //    }
+        //}
+    }
+
+    public void TryDisplay()
+    {
+        if (currentPiece != null)
+        {
+            currentPiece.abilities.piece = currentPiece;
+            currentPiece.abilities.ShowAbilities();
+        }
     }
 
     //public void SwapTaken(bool taken)

@@ -9,14 +9,15 @@ public class Movement : MonoBehaviour
 {
     Mouse mouse;
     ControlCenter controlCenter;
+    public Abilities abilities;
    // [SerializeField] LayerMask tileLayer;
     [HideInInspector] public bool canDrag = false;
     public int pieceColor = 0;
     [HideInInspector] public Tile currentTile;
     public List<int> moveTypes;
-    [HideInInspector] public List<int> abilityType;
+     public List<int> abilityType;
     [HideInInspector] public bool canPlace = true;
-    private bool hasMoved = false;
+    private int hasMoved = 0;
     [SerializeField] bool king = false; 
     private enum MovementType
     {
@@ -28,15 +29,15 @@ public class Movement : MonoBehaviour
         Pawn = 5
     }
 
-    private enum Abilities
-    {
-        Dig = 11,
-        Shoot = 12,
-        Protect = 13,
-        Redirect = 14,
-        AreaEffect = 15,
-        Swap = 16
-    }
+    //private enum Abilities
+    //{
+    //    Dig = 11,
+    //    Shoot = 12,
+    //    Protect = 13,
+    //    Redirect = 14,
+    //    AreaEffect = 15,
+    //    Swap = 16
+    //}
 
 
   //  private List<int> movements;
@@ -133,7 +134,7 @@ public class Movement : MonoBehaviour
         int x = (currentTile.tilePos.GetLength(1));
         if (pieceColor == 1)
         {
-            if (!hasMoved)
+            if (hasMoved == 0)
             {
                 for (int i = 1; i < 3; i++)
                 {
@@ -152,7 +153,7 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            if (!hasMoved)
+            if (hasMoved == 0)
             {
                 for (int i = 1; i < 3; i++)
                 {
@@ -456,7 +457,12 @@ public class Movement : MonoBehaviour
         if (currentTile != null)
         {
             currentTile.SetPiece(null, false);
-            hasMoved = true;
+            if (hasMoved == 0)
+            {
+                abilities.piece = this;
+                abilities.AddAbility();
+                hasMoved++;
+            }
         }
         gameObject.transform.position = pos;
         currentTile = tile;

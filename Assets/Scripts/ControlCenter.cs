@@ -172,11 +172,11 @@ public class ControlCenter : MonoBehaviour
 
     public bool CheckForJump(Tuple<int, int> tuple, Movement piece, bool FalseAttack)
     {
-        bool digAttack = false;
-        if (piece.abilityType.Contains(11))
-        {
-            digAttack = true;
-        }
+        //bool digAttack = false;
+        //if (piece.abilityType.Contains(0))
+        //{
+        //    digAttack = true;
+        //}
         var temp1 = tuple.Item1;
         var temp2 = tuple.Item2;
 
@@ -188,7 +188,7 @@ public class ControlCenter : MonoBehaviour
             {
                 if (tile.taken)
                 {
-                    if (tile.currentPiece.pieceColor != piece.pieceColor && (!FalseAttack || digAttack))
+                    if (tile.currentPiece.pieceColor != piece.pieceColor && (!FalseAttack))// || digAttack))
                     {
                         possibles.Add(tuple);
                         
