@@ -85,13 +85,13 @@ public class Tile : MonoBehaviour
             //Destroy(currentPiece.gameObject);
         }
         currentPiece = id;
-        if (id == null)
-        {
-            taken = false;
-        }
-        else if (!taken)
+        if (!taken)
         {
             taken = true;
+        }
+        else if (id == null)
+        {
+            taken = false;
         }
     }
 
@@ -113,15 +113,7 @@ public class Tile : MonoBehaviour
         //controlCenter.movingPiece = true;
         if (currentPiece != null)
         {
-            if (controlCenter.abilities.piece != null)
-            {
-                if (controlCenter.abilities.piece.abilityActive)
-                {
-                    //controlCenter.TargetSet(controlCenter.abilities.piece, transform.position, controlCenter.abilities.piece.usedAbility);
-                    controlCenter.abilities.UseAbility(controlCenter.abilities.piece.usedAbility, this);
-                }
-            }
-            else if (controlCenter.turn == currentPiece.pieceColor)
+            if (controlCenter.turn == currentPiece.pieceColor)
             {
                 if (controlCenter.current == null)
                 {
@@ -160,14 +152,6 @@ public class Tile : MonoBehaviour
             {
                 // canDrag = false;
                 controlCenter.PositionSet(transform.position, controlCenter.current);
-            }
-        }
-        else if (controlCenter.abilities.piece != null)
-        {
-            if (controlCenter.abilities.piece.abilityActive)
-            {
-                //controlCenter.TargetSet(controlCenter.abilities.piece, transform.position, controlCenter.abilities.piece.usedAbility);
-                controlCenter.abilities.UseAbility(controlCenter.abilities.piece.usedAbility, this);
             }
         }
     }

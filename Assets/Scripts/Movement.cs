@@ -18,9 +18,7 @@ public class Movement : MonoBehaviour
      public List<int> abilityType;
     [HideInInspector] public bool canPlace = true;
     private int hasMoved = 0;
-    [SerializeField] bool king = false;
-    public bool abilityActive = false;
-    public int usedAbility;
+    [SerializeField] bool king = false; 
     private enum MovementType
     {
         King = 0,
@@ -88,7 +86,7 @@ public class Movement : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1) && canDrag) // right click
         {
-            //controlCenter.ColorSet(false);
+            controlCenter.ColorSet(false);
             Return();
             // Display Ability Menu
         }
