@@ -17,9 +17,10 @@ public class Movement : MonoBehaviour
     public List<int> moveTypes;
      public List<int> abilityType;
     [HideInInspector] public bool canPlace = true;
+    [HideInInspector] public bool canTarget = false;
     private int hasMoved = 0;
     [SerializeField] bool king = false;
-    public bool abilityActive = false;
+    //public bool abilityActive = false;
     public int usedAbility;
     private enum MovementType
     {

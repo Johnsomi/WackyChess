@@ -115,7 +115,7 @@ public class Tile : MonoBehaviour
         {
             if (controlCenter.abilities.piece != null)
             {
-                if (controlCenter.abilities.piece.abilityActive)
+                if (controlCenter.abilities.piece.canTarget)
                 {
                     //controlCenter.TargetSet(controlCenter.abilities.piece, transform.position, controlCenter.abilities.piece.usedAbility);
                     controlCenter.abilities.UseAbility(controlCenter.abilities.piece.usedAbility, this);
@@ -164,7 +164,7 @@ public class Tile : MonoBehaviour
         }
         else if (controlCenter.abilities.piece != null)
         {
-            if (controlCenter.abilities.piece.abilityActive)
+            if (controlCenter.abilities.piece.canTarget)
             {
                 //controlCenter.TargetSet(controlCenter.abilities.piece, transform.position, controlCenter.abilities.piece.usedAbility);
                 controlCenter.abilities.UseAbility(controlCenter.abilities.piece.usedAbility, this);

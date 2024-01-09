@@ -106,7 +106,7 @@ public class Abilities : MonoBehaviour
     {
         int ability = piece.abilityType[0];
         AbilityAction(ability);
-        piece.abilityActive = true;
+        piece.canTarget = true;
         //if (piece.pieceColor == 1)
         //{
         //    controlCenter.turn++;
@@ -122,7 +122,7 @@ public class Abilities : MonoBehaviour
     {
         int ability = piece.abilityType[1];
         AbilityAction(ability);
-        piece.abilityActive = true;
+        piece.canTarget = true;
         //if (piece.pieceColor == 1)
         //{
         //    controlCenter.turn++;
@@ -141,7 +141,7 @@ public class Abilities : MonoBehaviour
         buttonOne.gameObject.SetActive(false);
         buttonTwo.gameObject.SetActive(false);
         buttonClose.gameObject.SetActive(false);
-        if (!piece.abilityActive)
+        if (!piece.canTarget)
         {
             piece = null;
         }
@@ -396,7 +396,7 @@ public class Abilities : MonoBehaviour
 
     void EndAbility()
     {
-        piece.abilityActive = false;
+        piece.canTarget = false;
         controlCenter.possibles.Clear();
         controlCenter.ColorSet(false);
         if (piece.pieceColor == 1)

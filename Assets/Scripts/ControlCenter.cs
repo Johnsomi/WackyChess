@@ -18,7 +18,7 @@ public class ControlCenter : MonoBehaviour
 
 
     public Abilities abilities;
-    bool canTarget = true;
+    bool canTarget = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -98,16 +98,19 @@ public class ControlCenter : MonoBehaviour
                 else { canTarget = true; }
                 if (canTarget)
                 {
-
-                    //tiles[i].GetComponent<Tile>().SetPiece(piece, false);
-                    piece.abilities.FireShot(tiles[i].GetComponent<Tile>());
-                    //current = null;
+                    if (abilities.piece.usedAbility == 1)
+                    {
+                        //tiles[i].GetComponent<Tile>().SetPiece(piece, false);
+                        piece.abilities.FireShot(tiles[i].GetComponent<Tile>());
+                        //current = null;
+                    }
                     
                     if (current != null)
                     {
                         current = null;
                     }
                     canTarget = false;
+                    canPlace = false;
                     break;
                 }
             }
@@ -169,6 +172,7 @@ public class ControlCenter : MonoBehaviour
                         current = null;
                     }
                     canPlace = false;
+                    canTarget = false;
                     break;
                 }
             }
