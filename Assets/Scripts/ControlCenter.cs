@@ -239,6 +239,28 @@ public class ControlCenter : MonoBehaviour
         //}
     }
 
+    public void Ticker(int color)
+    {
+        for (int i = 0; i < tiles.Count; i++)
+        {
+            var temp = tiles[i].GetComponent<Tile>().currentPiece;
+            if (temp != null)
+            {
+                if (temp.pieceColor == color)
+                {
+                    if (temp.poison == true)
+                    {
+                        temp.PoisonCount();
+                    }
+                    if (temp.frozen == true)
+                    {
+                        temp.FrozenCount();
+                    }
+                }
+            }
+        }
+    }
+
     public bool CheckForJump(Tuple<int, int> tuple, Movement piece, bool FalseAttack)
     {
         //bool digAttack = false;

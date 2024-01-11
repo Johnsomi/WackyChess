@@ -60,7 +60,7 @@ public class Abilities : MonoBehaviour
         {
 
             //int random = UnityEngine.Random.Range(0, abilities);
-            int random = 4;
+            int random = 6;
             piece.abilityType.Add(random);
         }
         else if (count == 1)
@@ -251,6 +251,8 @@ public class Abilities : MonoBehaviour
 
             case 6:
                 //return "Poisonous";
+                //piece.usedAbility = 6;
+                //Shoot();
                 break;
 
             case 7:
@@ -259,6 +261,8 @@ public class Abilities : MonoBehaviour
 
             case 8:
                 //return "Freeze";
+                piece.usedAbility = 8;
+                Shoot();
                 break;
 
             case 9:
@@ -400,6 +404,24 @@ public class Abilities : MonoBehaviour
         controlCenter.ColorSet(true);
     }
 
+    public void PassiveAbilityCheck(Movement attacked)
+    {
+        var cur = controlCenter.current;
+        var abi = piece;
+        if (attacked.abilityType.Contains(6))
+        {
+            if (cur != null)
+            {
+                cur.poison = true;
+            }
+            else if (abi != null)
+            {
+                abi.poison = true;
+            }
+            
+        }
+    }
+
     /*void FriendlyInRange()
     {
         int y = (piece.currentTile.tilePos.GetLength(0));
@@ -493,13 +515,18 @@ public class Abilities : MonoBehaviour
         piece.canTarget = false;
         controlCenter.possibles.Clear();
         controlCenter.ColorSet(false);
-        if (piece.pieceColor == 1)
+        if (piece.pieceColor == controlCenter.turn)
         {
-            controlCenter.turn = 2;
-        }
-        else
-        {
-            controlCenter.turn = 1;
+            if (piece.pieceColor == 1)
+            {
+                controlCenter.turn = 2;
+                controlCenter.Ticker(1);
+            }
+            else
+            {
+                controlCenter.turn = 1;
+                controlCenter.Ticker(2);
+            }
         }
         piece = null;
     }

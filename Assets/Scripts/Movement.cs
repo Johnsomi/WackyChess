@@ -22,6 +22,10 @@ public class Movement : MonoBehaviour
     [SerializeField] bool king = false;
     //public bool abilityActive = false;
     public int usedAbility;
+    [HideInInspector] public bool frozen = false;
+    int frozenTick = 3;
+    int poisonTick = 3;
+    [HideInInspector] public bool poison = false;
     private enum MovementType
     {
         King = 0,
@@ -451,8 +455,31 @@ public class Movement : MonoBehaviour
         {
             controlCenter.ToggleWin(pieceColor);
         }
+        else if (abilityType.Contains(6))
+        {
+            abilities.PassiveAbilityCheck(this);
+        }
         // modify side display
         Destroy(gameObject);
+    }
+
+    public void PoisonCount()
+    {
+        poisonTick--;
+        if (poisonTick <= 0)
+        {
+            currentTile.SetPiece(null, true);
+        }
+    }
+
+    public void FrozenCount()
+    {
+        frozenTick--;
+        if (frozenTick <= 0)
+        {
+            // allow it to move
+            //???
+        }
     }
 
     public void Lock(Vector2 pos, Tile tile, bool take)
@@ -473,10 +500,12 @@ public class Movement : MonoBehaviour
         if (pieceColor == 1)
         {
             controlCenter.turn = 2;
+            controlCenter.Ticker(1);
         }
         else
         {
             controlCenter.turn = 1;
+            controlCenter.Ticker(2);
         }
     }
 
@@ -498,10 +527,12 @@ public class Movement : MonoBehaviour
         if (pieceColor == 1)
         {
             controlCenter.turn = 2;
+            controlCenter.Ticker(1);
         }
         else
         {
             controlCenter.turn = 1;
+            controlCenter.Ticker(2);
         }
     }
 
