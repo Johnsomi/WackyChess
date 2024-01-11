@@ -91,9 +91,9 @@ public class Movement : MonoBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = mousePos;
         }
-        if (Input.GetMouseButtonDown(1) && canDrag) // right click
+        if (Input.GetMouseButtonDown(1) && canDrag && abilities.piece != this) // right click
         {
-            //controlCenter.ColorSet(false);
+            controlCenter.ColorSet(false);
             Return();
             // Display Ability Menu
         }

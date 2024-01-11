@@ -60,7 +60,7 @@ public class Abilities : MonoBehaviour
         {
 
             //int random = UnityEngine.Random.Range(0, abilities);
-            int random = 6;
+            int random = 1;
             piece.abilityType.Add(random);
         }
         else if (count == 1)
@@ -228,7 +228,7 @@ public class Abilities : MonoBehaviour
             case 1:
                 //return "Shoot";
                 piece.usedAbility = 1;
-                Shoot();
+                Shoot(2);
                 break;
 
             case 2:
@@ -262,7 +262,7 @@ public class Abilities : MonoBehaviour
             case 8:
                 //return "Freeze";
                 piece.usedAbility = 8;
-                Shoot();
+                Shoot(2);
                 break;
 
             case 9:
@@ -327,14 +327,14 @@ public class Abilities : MonoBehaviour
         }
     }
 
-    void Shoot()
+    void Shoot(int attack)
     {
         int y = (piece.currentTile.tilePos.GetLength(0));
         int x = (piece.currentTile.tilePos.GetLength(1));
 
         for (int i = 1; i < 9; i++)
         {
-            if (controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x + i), piece, false) == true)
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x + i), piece, attack) == true)
             {
                 break;
             }
@@ -342,7 +342,7 @@ public class Abilities : MonoBehaviour
         //controlCenter.possibles.Add(new Tuple<int, int>(y, x + i));
         for (int i = 1; i < 9; i++)
         {
-            if (controlCenter.CheckForTarget(new Tuple<int, int>(y, x + i), piece, false) == true)
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y, x + i), piece, attack) == true)
             {
                 break;
             }
@@ -350,7 +350,7 @@ public class Abilities : MonoBehaviour
         //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x + i));
         for (int i = 1; i < 9; i++)
         {
-            if (controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x + i), piece, false) == true)
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x + i), piece, attack) == true)
             {
                 break;
             }
@@ -358,7 +358,7 @@ public class Abilities : MonoBehaviour
         //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x));
         for (int i = 1; i < 9; i++)
         {
-            if (controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x), piece, false) == true)
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x), piece, attack) == true)
             {
                 break;
             }
@@ -366,7 +366,7 @@ public class Abilities : MonoBehaviour
         //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x - i));
         for (int i = 1; i < 9; i++)
         {
-            if (controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x - i), piece, false) == true)
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x - i), piece, attack) == true)
             {
                 break;
             }
@@ -374,7 +374,7 @@ public class Abilities : MonoBehaviour
         //controlCenter.possibles.Add(new Tuple<int, int>(y, x - i));
         for (int i = 1; i < 9; i++)
         {
-            if (controlCenter.CheckForTarget(new Tuple<int, int>(y, x - i), piece, false) == true)
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y, x - i), piece, attack) == true)
             {
                 break;
             }
@@ -382,7 +382,7 @@ public class Abilities : MonoBehaviour
         //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x - i));
         for (int i = 1; i < 9; i++)
         {
-            if (controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x - i), piece, false) == true)
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x - i), piece, attack) == true)
             {
                 break;
             }
@@ -390,9 +390,124 @@ public class Abilities : MonoBehaviour
         //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x));
         for (int i = 1; i < 9; i++)
         {
-            if (controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x), piece, false) == true)
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x), piece, attack) == true)
             {
                 break;
+            }
+        }
+        controlCenter.ColorSet(true);
+    }
+
+    void RangedShoot(int distance, int attack, bool effectAll)
+    {
+        int y = (piece.currentTile.tilePos.GetLength(0));
+        int x = (piece.currentTile.tilePos.GetLength(1));
+        if (!effectAll)
+        {
+            for (int i = 1; i < distance; i++)
+            {
+                if (controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x + i), piece, attack) == true)
+                {
+                    break;
+                }
+            }
+            //controlCenter.possibles.Add(new Tuple<int, int>(y, x + i));
+            for (int i = 1; i < distance; i++)
+            {
+                if (controlCenter.CheckForTarget(new Tuple<int, int>(y, x + i), piece, attack) == true)
+                {
+                    break;
+                }
+            }
+            //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x + i));
+            for (int i = 1; i < distance; i++)
+            {
+                if (controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x + i), piece, attack) == true)
+                {
+                    break;
+                }
+            }
+            //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x));
+            for (int i = 1; i < distance; i++)
+            {
+                if (controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x), piece, attack) == true)
+                {
+                    break;
+                }
+            }
+            //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x - i));
+            for (int i = 1; i < distance; i++)
+            {
+                if (controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x - i), piece, attack) == true)
+                {
+                    break;
+                }
+            }
+            //controlCenter.possibles.Add(new Tuple<int, int>(y, x - i));
+            for (int i = 1; i < distance; i++)
+            {
+                if (controlCenter.CheckForTarget(new Tuple<int, int>(y, x - i), piece, attack) == true)
+                {
+                    break;
+                }
+            }
+            //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x - i));
+            for (int i = 1; i < distance; i++)
+            {
+                if (controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x - i), piece, attack) == true)
+                {
+                    break;
+                }
+            }
+            //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x));
+            for (int i = 1; i < distance; i++)
+            {
+                if (controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x), piece, attack) == true)
+                {
+                    break;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 1; i < distance; i++)
+            {
+                controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x + i), piece, attack);
+            }
+            //controlCenter.possibles.Add(new Tuple<int, int>(y, x + i));
+            for (int i = 1; i < distance; i++)
+            {
+                controlCenter.CheckForTarget(new Tuple<int, int>(y, x + i), piece, attack);
+            }
+            //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x + i));
+            for (int i = 1; i < distance; i++)
+            {
+                controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x + i), piece, attack);
+            }
+            //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x));
+            for (int i = 1; i < distance; i++)
+            {
+                controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x), piece, attack);
+            }
+            //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x - i));
+            for (int i = 1; i < distance; i++)
+            {
+                controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x - i), piece, attack);
+            }
+            //controlCenter.possibles.Add(new Tuple<int, int>(y, x - i));
+            for (int i = 1; i < distance; i++)
+            {
+                controlCenter.CheckForTarget(new Tuple<int, int>(y, x - i), piece, attack);
+            }
+            //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x - i));
+            for (int i = 1; i < distance; i++)
+            {
+                controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x - i), piece, attack);
+            }
+            //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x));
+            for (int i = 1; i < distance; i++)
+            {
+                controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x), piece, attack);
             }
         }
         controlCenter.ColorSet(true);

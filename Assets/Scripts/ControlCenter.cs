@@ -357,8 +357,12 @@ public class ControlCenter : MonoBehaviour
         }
     }
 
-    public bool CheckForTarget(Tuple<int, int> tuple, Movement piece, bool friendly)
+    public bool CheckForTarget(Tuple<int, int> tuple, Movement piece, int effect)
     {
+        // effect
+        // 0 = all
+        // 1 = friendy
+        // 2 = enemy
         //bool digAttack = false;
         //if (piece.abilityType.Contains(0))
         //{
@@ -375,11 +379,15 @@ public class ControlCenter : MonoBehaviour
             {
                 if (tile.taken)
                 {
-                    if (tile.currentPiece.pieceColor != piece.pieceColor && !friendly)// || digAttack))
+                    if (effect == 0)
                     {
                         possibles.Add(tuple);
                     }
-                    else if (tile.currentPiece.pieceColor == piece.pieceColor && friendly)
+                    else if (tile.currentPiece.pieceColor != piece.pieceColor && effect != 1)// || digAttack))
+                    {
+                        possibles.Add(tuple);
+                    }
+                    else if (tile.currentPiece.pieceColor == piece.pieceColor && effect != 2)
                     {
                         possibles.Add(tuple);
                     }
