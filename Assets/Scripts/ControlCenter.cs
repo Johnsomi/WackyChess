@@ -108,6 +108,10 @@ public class ControlCenter : MonoBehaviour
                     {
                         piece.abilities.Swap(tiles[i].GetComponent<Tile>());
                     }
+                    else if (abilities.piece.usedAbility == 8)
+                    {
+                        piece.abilities.Freeze(tiles[i].GetComponent<Tile>());
+                    }
                     
                     if (current != null)
                     {

@@ -477,8 +477,8 @@ public class Movement : MonoBehaviour
         frozenTick--;
         if (frozenTick <= 0)
         {
-            // allow it to move
-            //???
+            frozen = false;
+            frozenTick = 3;
         }
     }
 

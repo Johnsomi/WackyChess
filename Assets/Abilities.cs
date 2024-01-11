@@ -60,7 +60,7 @@ public class Abilities : MonoBehaviour
         {
 
             //int random = UnityEngine.Random.Range(0, abilities);
-            int random = 1;
+            int random = 8;
             piece.abilityType.Add(random);
         }
         else if (count == 1)
@@ -317,14 +317,14 @@ public class Abilities : MonoBehaviour
 
     public void UseAbility(int ability, Tile Target)
     {
-        if (ability == 1)
-        {
+        //if (ability == 1)
+        //{
             controlCenter.TargetSet(piece, Target.transform.position, ability);
-        }
-        else if (ability == 4)
-        {
-            controlCenter.TargetSet(piece, Target.transform.position, ability);
-        }
+        //}
+        //else if (ability == 4)
+        //{
+        //    controlCenter.TargetSet(piece, Target.transform.position, ability);
+        //}
     }
 
     void Shoot(int attack)
@@ -622,6 +622,12 @@ public class Abilities : MonoBehaviour
     public void FireShot(Tile tile)
     {
         tile.SetPiece(null, true);
+        EndAbility();
+    }
+
+    public void Freeze(Tile tile)
+    {
+        tile.currentPiece.frozen = true;
         EndAbility();
     }
 

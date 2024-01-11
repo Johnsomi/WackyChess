@@ -113,44 +113,47 @@ public class Tile : MonoBehaviour
         //controlCenter.movingPiece = true;
         if (currentPiece != null)
         {
-            if (controlCenter.abilities.piece != null)
+            if (!currentPiece.frozen)
             {
-                if (controlCenter.abilities.piece.canTarget)
+                if (controlCenter.abilities.piece != null)
                 {
-                    //controlCenter.TargetSet(controlCenter.abilities.piece, transform.position, controlCenter.abilities.piece.usedAbility);
-                    controlCenter.abilities.UseAbility(controlCenter.abilities.piece.usedAbility, this);
+                    if (controlCenter.abilities.piece.canTarget)
+                    {
+                        //controlCenter.TargetSet(controlCenter.abilities.piece, transform.position, controlCenter.abilities.piece.usedAbility);
+                        controlCenter.abilities.UseAbility(controlCenter.abilities.piece.usedAbility, this);
+                    }
                 }
-            }
-            else if (controlCenter.turn == currentPiece.pieceColor)
-            {
-                if (controlCenter.current == null)
+                else if (controlCenter.turn == currentPiece.pieceColor)
                 {
-                    controlCenter.current = currentPiece;
-                    currentPiece.canDrag = true;
-                    currentPiece.GetMovement();
-                    controlCenter.ColorSet(true);
-                    // DisplayMovement(moveTypes);
+                    if (controlCenter.current == null)
+                    {
+                        controlCenter.current = currentPiece;
+                        currentPiece.canDrag = true;
+                        currentPiece.GetMovement();
+                        controlCenter.ColorSet(true);
+                        // DisplayMovement(moveTypes);
+                    }
+                    //else
+                    //{
+                    //    //CheckCanPlace(transform.position);
+                    //    if (currentPiece.canDrag && currentPiece.canPlace && controlCenter.current == currentPiece)
+                    //    {
+                    //        // canDrag = false;
+                    //        controlCenter.PositionSet(transform.position, currentPiece);
+                    //    }
+                    //}
                 }
-                //else
-                //{
-                //    //CheckCanPlace(transform.position);
-                //    if (currentPiece.canDrag && currentPiece.canPlace && controlCenter.current == currentPiece)
-                //    {
-                //        // canDrag = false;
-                //        controlCenter.PositionSet(transform.position, currentPiece);
-                //    }
-                //}
-            }
-            else if (controlCenter.current != null)
-            {
-                if (controlCenter.current.canDrag && controlCenter.current.canPlace)
+                else if (controlCenter.current != null)
                 {
-                    //CheckCanPlace(transform.position);
+                    if (controlCenter.current.canDrag && controlCenter.current.canPlace)
+                    {
+                        //CheckCanPlace(transform.position);
 
-                    // canDrag = false;
-                    controlCenter.PositionSet(transform.position, controlCenter.current, false);
-                }
+                        // canDrag = false;
+                        controlCenter.PositionSet(transform.position, controlCenter.current, false);
+                    }
 
+                }
             }
         }
         else if (controlCenter.current != null)
