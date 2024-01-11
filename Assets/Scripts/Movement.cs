@@ -56,7 +56,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        controlCenter.PositionSet(transform.position, this);
+        controlCenter.PositionSet(transform.position, this, false);
         //SetMovement();
     }
 
@@ -472,11 +472,36 @@ public class Movement : MonoBehaviour
         currentTile.SetPiece(this, take);
         if (pieceColor == 1)
         {
-            controlCenter.turn++;
+            controlCenter.turn = 2;
         }
         else
         {
-            controlCenter.turn--;
+            controlCenter.turn = 1;
+        }
+    }
+
+    public void IgnoreLock(Vector2 pos, Tile tile)
+    {
+        //if (currentTile != null)
+        //{
+        //    currentTile.SetPiece(null, false);
+        //    if (hasMoved == 0)
+        //    {
+        //        abilities.piece = this;
+        //        abilities.AddAbility();
+        //        hasMoved++;
+        //    }
+        //}
+        gameObject.transform.position = pos;
+        currentTile = tile;
+        currentTile.SetPiece(this, false);
+        if (pieceColor == 1)
+        {
+            controlCenter.turn = 2;
+        }
+        else
+        {
+            controlCenter.turn = 1;
         }
     }
 

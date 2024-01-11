@@ -104,6 +104,10 @@ public class ControlCenter : MonoBehaviour
                         piece.abilities.FireShot(tiles[i].GetComponent<Tile>());
                         //current = null;
                     }
+                    else if (abilities.piece.usedAbility == 4)
+                    {
+                        piece.abilities.Swap(tiles[i].GetComponent<Tile>());
+                    }
                     
                     if (current != null)
                     {
@@ -117,7 +121,7 @@ public class ControlCenter : MonoBehaviour
         }
     }
 
-    public void PositionSet(Vector2 pos, Movement piece)
+    public void PositionSet(Vector2 pos, Movement piece, bool ignore)
     {
        // CheckForJumps(piece);
         for (int i = 0; i < tiles.Count; i++) 
@@ -132,48 +136,63 @@ public class ControlCenter : MonoBehaviour
                 else { canPlace = true; }
                 if (canPlace)
                 {
-                    int Ptemp = 0;
-                    if (piece.moveTypes.Contains(5) && current)
+                    if (!ignore)
                     {
-                        if (tiles[i].GetComponent<Tile>().tilePos.GetLength(1) == piece.currentTile.tilePos.GetLength(1))
+                        int Ptemp = 0;
+                        if (piece.moveTypes.Contains(5) && current)
                         {
-                            Ptemp = 1;
+                            if (tiles[i].GetComponent<Tile>().tilePos.GetLength(1) == piece.currentTile.tilePos.GetLength(1))
+                            {
+                                Ptemp = 1;
+                            }
+                            else if ((tiles[i].GetComponent<Tile>().tilePos.GetLength(0) != piece.currentTile.tilePos.GetLength(0)))
+                            {
+                                Ptemp = 2;
+                            }
                         }
-                        else if ((tiles[i].GetComponent<Tile>().tilePos.GetLength(0) != piece.currentTile.tilePos.GetLength(0)))
-                        {
-                            Ptemp = 2;
-                        }
-                    }
 
-                    if (!tiles[i].GetComponent<Tile>().taken && Ptemp != 2)
-                    {
-                        piece.canDrag = false;
-                        //tiles[i].GetComponent<Tile>().SetPiece(piece, false);
-                        piece.Lock(tiles[i].gameObject.transform.position, tiles[i].GetComponent<Tile>(), false);
-                        //current = null;
-                    }
-                    else if (tiles[i].GetComponent<Tile>().currentPiece != null && Ptemp != 1) 
-                    {
-                        if (tiles[i].GetComponent<Tile>().currentPiece.pieceColor != piece.pieceColor)
+                        if (!tiles[i].GetComponent<Tile>().taken && Ptemp != 2)
                         {
                             piece.canDrag = false;
-                            // tiles[i].GetComponent<Tile>().SetPiece(piece, true);
-                            piece.Lock(tiles[i].gameObject.transform.position, tiles[i].GetComponent<Tile>(), true);
+                            //tiles[i].GetComponent<Tile>().SetPiece(piece, false);
+                            piece.Lock(tiles[i].gameObject.transform.position, tiles[i].GetComponent<Tile>(), false);
+                            //current = null;
                         }
+                        else if (tiles[i].GetComponent<Tile>().currentPiece != null && Ptemp != 1)
+                        {
+                            if (tiles[i].GetComponent<Tile>().currentPiece.pieceColor != piece.pieceColor)
+                            {
+                                piece.canDrag = false;
+                                // tiles[i].GetComponent<Tile>().SetPiece(piece, true);
+                                piece.Lock(tiles[i].gameObject.transform.position, tiles[i].GetComponent<Tile>(), true);
+                            }
+                        }
+                        else
+                        {
+                            piece.canDrag = false;
+                            piece.Return();
+                            // current = null;
+                        }
+                        if (current != null)
+                        {
+                            current = null;
+                        }
+                        canPlace = false;
+                        canTarget = false;
+                        break;
                     }
                     else
                     {
                         piece.canDrag = false;
-                        piece.Return();
-                        // current = null;
+                        piece.IgnoreLock(tiles[i].gameObject.transform.position, tiles[i].GetComponent<Tile>());
+                        if (current != null)
+                        {
+                            current = null;
+                        }
+                        canPlace = false;
+                        canTarget = false;
+                        break;
                     }
-                    if (current != null)
-                    {
-                        current = null;
-                    }
-                    canPlace = false;
-                    canTarget = false;
-                    break;
                 }
             }
         }
@@ -272,6 +291,47 @@ public class ControlCenter : MonoBehaviour
         else
         {
             win.transform.Find("BlackWin").gameObject.SetActive(false);
+        }
+    }
+
+    public void CheckAll(Movement piece, int type)
+    {
+        // 0 = all empty
+        // 1 = all friends
+        // 2 = all enemies
+
+        for (int j = 0; j < tiles.Count; j++)
+        {
+            var tile = tiles[j].GetComponent<Tile>();
+            if (type != 0)
+            {
+                if (tile.taken)
+                {
+                    if (type == 1 && tile.currentPiece.pieceColor == piece.pieceColor)
+                    {
+                        var pos = new Tuple<int, int>(tile.tilePos.GetLength(0), tile.tilePos.GetLength(1));
+                        possibles.Add(pos);
+                    }
+                    else if (type == 2 && tile.currentPiece.pieceColor != piece.pieceColor)
+                    {
+                        var pos = new Tuple<int, int>(tile.tilePos.GetLength(0), tile.tilePos.GetLength(1));
+                        possibles.Add(pos);
+                    }
+                    // Stop search in that direction
+                    //possibles.Remove(tuple);
+                }
+            }
+            else
+            {
+                if (!tile.taken)
+                {
+                    var pos = new Tuple<int, int>(tile.tilePos.GetLength(0), tile.tilePos.GetLength(1));
+                    possibles.Add(pos);
+                    
+                    // Stop search in that direction
+                    //possibles.Remove(tuple);
+                }
+            }
         }
     }
 

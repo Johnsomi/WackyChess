@@ -148,7 +148,7 @@ public class Tile : MonoBehaviour
                     //CheckCanPlace(transform.position);
 
                     // canDrag = false;
-                    controlCenter.PositionSet(transform.position, controlCenter.current);
+                    controlCenter.PositionSet(transform.position, controlCenter.current, false);
                 }
 
             }
@@ -159,7 +159,7 @@ public class Tile : MonoBehaviour
             if (controlCenter.current.canDrag && controlCenter.current.canPlace)
             {
                 // canDrag = false;
-                controlCenter.PositionSet(transform.position, controlCenter.current);
+                controlCenter.PositionSet(transform.position, controlCenter.current, false);
             }
         }
         else if (controlCenter.abilities.piece != null)

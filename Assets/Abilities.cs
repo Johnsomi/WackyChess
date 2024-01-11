@@ -60,7 +60,7 @@ public class Abilities : MonoBehaviour
         {
 
             //int random = UnityEngine.Random.Range(0, abilities);
-            int random = 1;
+            int random = 4;
             piece.abilityType.Add(random);
         }
         else if (count == 1)
@@ -241,6 +241,8 @@ public class Abilities : MonoBehaviour
 
             case 4:
                 //return "Swap";
+                piece.usedAbility = 4;
+                FriendCheck();
                 break;
 
             case 5:
@@ -312,6 +314,10 @@ public class Abilities : MonoBehaviour
     public void UseAbility(int ability, Tile Target)
     {
         if (ability == 1)
+        {
+            controlCenter.TargetSet(piece, Target.transform.position, ability);
+        }
+        else if (ability == 4)
         {
             controlCenter.TargetSet(piece, Target.transform.position, ability);
         }
@@ -388,6 +394,94 @@ public class Abilities : MonoBehaviour
         controlCenter.ColorSet(true);
     }
 
+    void FriendCheck()
+    {
+        controlCenter.CheckAll(piece, 1);
+        controlCenter.ColorSet(true);
+    }
+
+    /*void FriendlyInRange()
+    {
+        int y = (piece.currentTile.tilePos.GetLength(0));
+        int x = (piece.currentTile.tilePos.GetLength(1));
+
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x + i), piece, true) == true)
+            {
+                break;
+            }
+        }
+        //controlCenter.possibles.Add(new Tuple<int, int>(y, x + i));
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y, x + i), piece, true) == true)
+            {
+                break;
+            }
+        }
+        //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x + i));
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x + i), piece, true) == true)
+            {
+                break;
+            }
+        }
+        //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x));
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x), piece, true) == true)
+            {
+                break;
+            }
+        }
+        //controlCenter.possibles.Add(new Tuple<int, int>(y - i, x - i));
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y - i, x - i), piece, true) == true)
+            {
+                break;
+            }
+        }
+        //controlCenter.possibles.Add(new Tuple<int, int>(y, x - i));
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y, x - i), piece, true) == true)
+            {
+                break;
+            }
+        }
+        //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x - i));
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x - i), piece, true) == true)
+            {
+                break;
+            }
+        }
+        //controlCenter.possibles.Add(new Tuple<int, int>(y + i, x));
+        for (int i = 1; i < 9; i++)
+        {
+            if (controlCenter.CheckForTarget(new Tuple<int, int>(y + i, x), piece, true) == true)
+            {
+                break;
+            }
+        }
+        controlCenter.ColorSet(true);
+    }*/
+
+    public void Swap(Tile tile)
+    {
+        var temp = tile.currentPiece;
+        var swapper = piece.currentTile;
+        controlCenter.PositionSet(temp.transform.position, piece, true);
+        controlCenter.PositionSet(swapper.transform.position, temp, true);
+        //tile.SetPiece(piece, false);
+        //swapper.SetPiece(temp, false);
+        EndAbility();
+    }
+
     public void FireShot(Tile tile)
     {
         tile.SetPiece(null, true);
@@ -401,11 +495,11 @@ public class Abilities : MonoBehaviour
         controlCenter.ColorSet(false);
         if (piece.pieceColor == 1)
         {
-            controlCenter.turn++;
+            controlCenter.turn = 2;
         }
         else
         {
-            controlCenter.turn--;
+            controlCenter.turn = 1;
         }
         piece = null;
     }
