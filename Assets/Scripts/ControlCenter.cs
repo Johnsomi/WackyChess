@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
@@ -125,6 +126,28 @@ public class ControlCenter : MonoBehaviour
         }
     }
 
+    public void EffectAllInRange(int size)
+    {
+        int x = 8;
+        if (size == 2)
+        {
+            x = 24;
+        }
+        for (int i = 0; i < tiles.Count; i++)
+        {
+            if (possibles.Contains(new Tuple<int, int>(tiles[i].GetComponent<Tile>().tilePos.GetLength(0), tiles[i].GetComponent<Tile>().tilePos.GetLength(1))))
+            {
+                if (abilities.piece.usedAbility == 5)
+                {
+                    abilities.piece.abilities.Kill(tiles[i].GetComponent<Tile>());
+                }
+                x--;
+                if (x == 0) { break; }
+            }
+        }
+        abilities.piece.abilities.CallEndAbility();
+    }
+
     public void PositionSet(Vector2 pos, Movement piece, bool ignore)
     {
        // CheckForJumps(piece);
@@ -202,7 +225,7 @@ public class ControlCenter : MonoBehaviour
         }
     }
 
-    public void Check(Movement piece, Vector2 pos, Tile tile)
+    void Check(Movement piece, Vector2 pos, Tile tile)
     {
         //for(int i = 0; i < piece.moveTypes.Count; i++)
         //{
