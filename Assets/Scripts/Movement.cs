@@ -60,6 +60,10 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        if (abilities == null)
+        {
+            abilities = GameObject.Find("AbilityController").GetComponent<Abilities>();
+        }
         controlCenter.PositionSet(transform.position, this, false);
         //SetMovement();
     }

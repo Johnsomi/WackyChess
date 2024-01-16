@@ -16,6 +16,8 @@ public class ControlCenter : MonoBehaviour
     public Canvas canvas;
     private GameObject win;
     [HideInInspector] public int turn = 1;
+    public List<GameObject> WPieces = new List<GameObject>();
+    public List<GameObject> BPieces = new List<GameObject>();
 
 
     public Abilities abilities;
@@ -99,19 +101,24 @@ public class ControlCenter : MonoBehaviour
                 else { canTarget = true; }
                 if (canTarget)
                 {
-                    if (abilities.piece.usedAbility == 1)
+                    int ua = abilities.piece.usedAbility;
+                    if (ua == 1)
                     {
                         //tiles[i].GetComponent<Tile>().SetPiece(piece, false);
                         piece.abilities.FireShot(tiles[i].GetComponent<Tile>());
                         //current = null;
                     }
-                    else if (abilities.piece.usedAbility == 4)
+                    else if (ua == 4)
                     {
                         piece.abilities.Swap(tiles[i].GetComponent<Tile>());
                     }
-                    else if (abilities.piece.usedAbility == 8)
+                    else if (ua == 8)
                     {
                         piece.abilities.Freeze(tiles[i].GetComponent<Tile>());
+                    }
+                    else if (ua == 11)
+                    {
+                        piece.abilities.CreatePiece(tiles[i].GetComponent<Tile>(), 5, piece.pieceColor);
                     }
                     
                     if (current != null)
@@ -390,6 +397,7 @@ public class ControlCenter : MonoBehaviour
         // 0 = all
         // 1 = friendy
         // 2 = enemy
+        // 3 = none
         //bool digAttack = false;
         //if (piece.abilityType.Contains(0))
         //{
@@ -404,7 +412,7 @@ public class ControlCenter : MonoBehaviour
 
             if (tile.tilePos.GetLength(0) == temp1 && tile.tilePos.GetLength(1) == temp2)
             {
-                if (tile.taken)
+                if (tile.taken && effect != 3)
                 {
                     if (effect == 0)
                     {
@@ -421,6 +429,11 @@ public class ControlCenter : MonoBehaviour
                         // Stop search in that direction
                     return true;
                     //possibles.Remove(tuple);
+                }
+                else if (effect == 3 && !tile.taken)
+                {
+                    possibles.Add(tuple);
+                    return true;
                 }
                 else
                 {
