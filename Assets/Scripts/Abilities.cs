@@ -16,7 +16,7 @@ public class Abilities : MonoBehaviour
     public Button buttonClose;
     private enum AbilityTypes
     {
-        Dig = 0,
+        Phase = 0,
         Shoot = 1,
         Warp = 2,
         Dash = 3,
@@ -59,7 +59,7 @@ public class Abilities : MonoBehaviour
         {
 
             //int random = UnityEngine.Random.Range(0, abilities);
-            int random = 11;
+            int random = 2;
             piece.abilityType.Add(random);
         }
         else if (count == 1)
@@ -160,7 +160,7 @@ public class Abilities : MonoBehaviour
         switch (ability)
         {
             case 0:
-                return "Dig";
+                return "Phase";
 
             case 1:
                 return "Shoot";
@@ -230,7 +230,7 @@ public class Abilities : MonoBehaviour
         switch (ability)
         {
             case 0:
-                //return "Dig";
+                //return "Phase";
                 break;
 
             case 1:
@@ -241,6 +241,8 @@ public class Abilities : MonoBehaviour
 
             case 2:
                 //return "Warp";
+                piece.usedAbility = 2;
+                EmptyCheck();
                 break;
 
             case 3:
@@ -579,6 +581,12 @@ public class Abilities : MonoBehaviour
     void EnemyCheck()
     {
         controlCenter.CheckAll(piece, 2);
+        controlCenter.ColorSet(true);
+    }
+
+    void EmptyCheck()
+    {
+        controlCenter.CheckAll(piece, 0);
         controlCenter.ColorSet(true);
     }
 

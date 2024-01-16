@@ -108,6 +108,11 @@ public class ControlCenter : MonoBehaviour
                         piece.abilities.FireShot(tiles[i].GetComponent<Tile>());
                         //current = null;
                     }
+                    else if (ua == 2)
+                    {
+                        PositionSet(tiles[i].transform.position, piece, true);
+                        piece.abilities.CallEndAbility();
+                    }
                     else if (ua == 4)
                     {
                         piece.abilities.Swap(tiles[i].GetComponent<Tile>());
