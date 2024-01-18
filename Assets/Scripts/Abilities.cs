@@ -16,7 +16,7 @@ public class Abilities : MonoBehaviour
     public Button buttonClose;
     private enum AbilityTypes
     {
-        Phase = 0,
+        SneakAttack = 0,
         Shoot = 1,
         Warp = 2,
         Dash = 3,
@@ -35,7 +35,7 @@ public class Abilities : MonoBehaviour
         Henry = 16, // Off with her head
         FastPromote = 17,
         Empower = 18,
-        SelfSacrifice = 19,
+        Infiltrate = 19,
         Guardian = 20,
     }
     // Start is called before the first frame update
@@ -59,7 +59,7 @@ public class Abilities : MonoBehaviour
         {
 
             //int random = UnityEngine.Random.Range(0, abilities);
-            int random = 2;
+            int random = 19;
             piece.abilityType.Add(random);
         }
         else if (count == 1)
@@ -160,7 +160,7 @@ public class Abilities : MonoBehaviour
         switch (ability)
         {
             case 0:
-                return "Phase";
+                return "Sneak Attack";
 
             case 1:
                 return "Shoot";
@@ -217,7 +217,7 @@ public class Abilities : MonoBehaviour
                 return "Empower";
 
             case 19:
-                return "Self Sacrifice";
+                return "Infiltrate";
 
             case 20:
                 return "Guardian";
@@ -230,7 +230,9 @@ public class Abilities : MonoBehaviour
         switch (ability)
         {
             case 0:
-                //return "Phase";
+                //return "Sneak Attack";
+                piece.usedAbility = 0;
+                EnemyCheck();
                 break;
 
             case 1:
@@ -321,7 +323,9 @@ public class Abilities : MonoBehaviour
                 break;
 
             case 19:
-                //return "Self Sacrifice";
+                //return "Infiltrate";
+                piece.usedAbility = 19;
+                EnemyCheck();
                 break;
 
             case 20:
@@ -702,6 +706,18 @@ public class Abilities : MonoBehaviour
         }
         EndAbility();
     }
+
+    public void MoveTo(Tile tile)
+    {
+        controlCenter.PositionSet(tile.transform.position, piece, false);
+        EndAbility();
+    }
+
+    //public void Assassinate(Tile tile)
+    //{
+    //    tile.SetPiece(piece, true);
+    //    EndAbility();
+    //}
 
     public void Kill(Tile tile)
     {

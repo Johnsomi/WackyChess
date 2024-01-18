@@ -108,12 +108,11 @@ public class ControlCenter : MonoBehaviour
                         piece.abilities.FireShot(tiles[i].GetComponent<Tile>());
                         //current = null;
                     }
-                    else if (ua == 2)
+                    else if (ua == 0 || ua == 2)
                     {
-                        PositionSet(tiles[i].transform.position, piece, true);
-                        piece.abilities.CallEndAbility();
+                        piece.abilities.MoveTo(tiles[i].GetComponent<Tile>());
                     }
-                    else if (ua == 4)
+                    else if (ua == 4 || ua == 19)
                     {
                         piece.abilities.Swap(tiles[i].GetComponent<Tile>());
                     }
@@ -125,7 +124,6 @@ public class ControlCenter : MonoBehaviour
                     {
                         piece.abilities.CreatePiece(tiles[i].GetComponent<Tile>(), 5, piece.pieceColor);
                     }
-                    
                     if (current != null)
                     {
                         current = null;
@@ -360,7 +358,8 @@ public class ControlCenter : MonoBehaviour
         // 0 = all empty
         // 1 = all friends
         // 2 = all enemies
-
+        int uaV = 100;
+        uaV = piece.usedAbility;
         for (int j = 0; j < tiles.Count; j++)
         {
             var tile = tiles[j].GetComponent<Tile>();
@@ -369,14 +368,31 @@ public class ControlCenter : MonoBehaviour
                 if (tile.taken)
                 {
                     if (type == 1 && tile.currentPiece.pieceColor == piece.pieceColor)
-                    {
+                    {                        
                         var pos = new Tuple<int, int>(tile.tilePos.GetLength(0), tile.tilePos.GetLength(1));
                         possibles.Add(pos);
                     }
                     else if (type == 2 && tile.currentPiece.pieceColor != piece.pieceColor)
                     {
                         var pos = new Tuple<int, int>(tile.tilePos.GetLength(0), tile.tilePos.GetLength(1));
-                        possibles.Add(pos);
+                        if (uaV == 0)
+                        {
+                            if (tile.currentPiece.moveTypes.Contains(5))
+                            {
+                                possibles.Add(pos);
+                            }
+                        }
+                        else if (uaV == 19)
+                        {
+                            if (tile.currentPiece.moveTypes.Contains(piece.moveTypes[0]))
+                            {
+                                possibles.Add(pos);
+                            }
+                        }
+                        else
+                        {
+                            possibles.Add(pos);
+                        }
                     }
                     // Stop search in that direction
                     //possibles.Remove(tuple);
