@@ -59,7 +59,7 @@ public class Abilities : MonoBehaviour
         {
 
             //int random = UnityEngine.Random.Range(0, abilities);
-            int random = 19;
+            int random = 2;
             piece.abilityType.Add(random);
         }
         else if (count == 1)
@@ -696,7 +696,6 @@ public class Abilities : MonoBehaviour
 
     public void CreatePiece(Tile tile, int pieceType, int color)
     {
-
         if (color == 1) {
             Instantiate(controlCenter.WPieces[pieceType], tile.transform.position, Quaternion.identity);
         }

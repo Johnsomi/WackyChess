@@ -107,6 +107,30 @@ public class Tile : MonoBehaviour
         }
     }
 
+    public void Promote(int color)
+    {
+        int random = UnityEngine.Random.Range(1, 4);
+        List<int> abilities = new List<int>();
+        abilities = currentPiece.abilityType;
+        SetPiece(null, true);
+        if (color == 1)
+        {
+            Instantiate(controlCenter.WPieces[random], transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(controlCenter.BPieces[random], transform.position, Quaternion.identity);
+        }
+        StartCoroutine(WaitAbility(abilities));
+    }
+
+    IEnumerator WaitAbility(List<int> abilities)
+    {
+        yield return new WaitUntil(() => currentPiece != null);
+
+        currentPiece.abilityType = abilities;
+    }
+
     private void OnMouseDown()
     {
         // controlCenter.pieceMoved = this.gameObject;

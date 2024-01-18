@@ -511,6 +511,10 @@ public class Movement : MonoBehaviour
             controlCenter.turn = 1;
             controlCenter.Ticker(2);
         }
+        if (moveTypes.Contains(5) && currentTile.promotionType == pieceColor)
+        {
+            currentTile.Promote(pieceColor);
+        }
     }
 
     public void IgnoreLock(Vector2 pos, Tile tile)
