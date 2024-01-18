@@ -131,6 +131,10 @@ public class Tile : MonoBehaviour
 
         currentPiece.abilityType = abilities;
         promotionNumber = 0;
+        if (controlCenter.queenCanvas.activeInHierarchy)
+        {
+            controlCenter.queenCanvas.SetActive(false);
+        }
         controlCenter.promoteCanvas.SetActive(false);
     }
 

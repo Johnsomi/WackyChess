@@ -7715,6 +7715,7 @@ MonoBehaviour:
   possibleMoves: []
   canvas: {fileID: 657506772}
   promoteCanvas: {fileID: 0}
+  queenCanvas: {fileID: 0}
   turn: 1
   WPieces:
   - {fileID: 2940512663047902521, guid: 91c671a00c7f6b044926b75e8d9614ad, type: 3}

@@ -16,6 +16,7 @@ public class ControlCenter : MonoBehaviour
     public Canvas canvas;
     private GameObject win;
     [HideInInspector] public GameObject promoteCanvas;
+    [HideInInspector] public GameObject queenCanvas;
     [HideInInspector] public int turn = 1;
     public List<GameObject> WPieces = new List<GameObject>();
     public List<GameObject> BPieces = new List<GameObject>();
@@ -34,8 +35,11 @@ public class ControlCenter : MonoBehaviour
         //}
         win = canvas.transform.Find("Win").gameObject;
         win.SetActive(false);
-        promoteCanvas = canvas.transform.Find("Promote").gameObject; 
+        promoteCanvas = canvas.transform.Find("Promote").gameObject;
+        queenCanvas = promoteCanvas.transform.Find("Queen").gameObject;
+        queenCanvas.SetActive(false);
         promoteCanvas.SetActive(false);
+        
         int x = 0;
         for (int i = 1; i < 9; i++)
         {
@@ -52,6 +56,38 @@ public class ControlCenter : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public bool CheckForQueen()
+    {
+        for (int j = 0; j < tiles.Count; j++)
+        {
+            var tile = tiles[j].GetComponent<Tile>();
+            if (tile.taken)
+            {
+                if (current != null)
+                {
+                    if (tile.currentPiece.pieceColor == current.pieceColor)
+                    {
+                        if (tile.currentPiece.moveTypes.Contains(1))
+                        {
+                            return false;
+                        }
+                    }
+                }
+                else if (abilities.piece != null)
+                {
+                    if (tile.currentPiece.pieceColor == abilities.piece.pieceColor)
+                    {
+                        if (tile.currentPiece.moveTypes.Contains(1))
+                        {
+                            return false;
+                        }
+                    }                   
+                }
+            }
+        }
+        return true;
     }
 
     public void ColorSet(bool color)

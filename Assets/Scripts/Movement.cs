@@ -514,6 +514,10 @@ public class Movement : MonoBehaviour
         if (moveTypes.Contains(5) && currentTile.promotionType == pieceColor)
         {
             controlCenter.promoteCanvas.SetActive(true);
+            if (controlCenter.CheckForQueen())
+            {
+                controlCenter.queenCanvas.SetActive(true);
+            }
             currentTile.Promote(pieceColor);
         }
     }
