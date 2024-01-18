@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -11,7 +12,7 @@ public class Tile : MonoBehaviour
     public Material shadeMat = null;
     public Material clearMat = null;
     public int promotionType = 0;
-
+    int promotionNumber = 0;
     //[HideInInspector] public int tileID = -1;
     public int[,] tilePos = new int[0, 0];
     //[HideInInspector] public int piece = 0;
@@ -109,19 +110,19 @@ public class Tile : MonoBehaviour
 
     public void Promote(int color)
     {
-        int random = UnityEngine.Random.Range(1, 4);
-        List<int> abilities = new List<int>();
-        abilities = currentPiece.abilityType;
-        SetPiece(null, true);
-        if (color == 1)
-        {
-            Instantiate(controlCenter.WPieces[random], transform.position, Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(controlCenter.BPieces[random], transform.position, Quaternion.identity);
-        }
-        StartCoroutine(WaitAbility(abilities));
+        StartCoroutine(WaitPromote(color));
+        //List<int> abilities = new List<int>();
+        //abilities = currentPiece.abilityType;
+        //SetPiece(null, true);
+        //if (color == 1)
+        //{
+        //    Instantiate(controlCenter.WPieces[promotionNumber], transform.position, Quaternion.identity);
+        //}
+        //else
+        //{
+        //    Instantiate(controlCenter.BPieces[promotionNumber], transform.position, Quaternion.identity);
+        //}
+        //StartCoroutine(WaitAbility(abilities));
     }
 
     IEnumerator WaitAbility(List<int> abilities)
@@ -129,6 +130,36 @@ public class Tile : MonoBehaviour
         yield return new WaitUntil(() => currentPiece != null);
 
         currentPiece.abilityType = abilities;
+        promotionNumber = 0;
+        controlCenter.promoteCanvas.SetActive(false);
+    }
+
+    IEnumerator WaitPromote(int color)
+    {
+        yield return new WaitUntil(() => promotionNumber != 0);
+
+        BeginPromotion(color);
+    }
+
+    void BeginPromotion(int color)
+    {
+        List<int> abilities = new List<int>();
+        abilities = currentPiece.abilityType;
+        SetPiece(null, true);
+        if (color == 1)
+        {
+            Instantiate(controlCenter.WPieces[promotionNumber], transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(controlCenter.BPieces[promotionNumber], transform.position, Quaternion.identity);
+        }
+        StartCoroutine(WaitAbility(abilities));
+    }
+
+    public void SetPromote(int piece)
+    {
+        promotionNumber = piece;
     }
 
     private void OnMouseDown()

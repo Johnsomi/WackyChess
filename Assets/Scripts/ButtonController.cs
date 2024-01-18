@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour
 {
+    public ControlCenter controlCenter;  
     public void RestartGame()
     {
         SceneManager.LoadScene(0);        
@@ -16,6 +17,17 @@ public class ButtonController : MonoBehaviour
 
     public void Promote(int value)
     {
-
+        if (controlCenter.current != null)
+        {
+            controlCenter.current.currentTile.SetPromote(value);
+        }
+        else if (controlCenter.abilities.piece != null)
+        {
+            controlCenter.abilities.piece.currentTile.SetPromote(value);
+        }
+        else
+        {
+            Debug.Log("Error with promotion");
+        }
     }
 }

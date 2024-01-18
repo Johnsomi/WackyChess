@@ -15,6 +15,7 @@ public class ControlCenter : MonoBehaviour
     public List<Tile> possibleMoves = new List<Tile>();
     public Canvas canvas;
     private GameObject win;
+    [HideInInspector] public GameObject promoteCanvas;
     [HideInInspector] public int turn = 1;
     public List<GameObject> WPieces = new List<GameObject>();
     public List<GameObject> BPieces = new List<GameObject>();
@@ -33,6 +34,8 @@ public class ControlCenter : MonoBehaviour
         //}
         win = canvas.transform.Find("Win").gameObject;
         win.SetActive(false);
+        promoteCanvas = canvas.transform.Find("Promote").gameObject; 
+        promoteCanvas.SetActive(false);
         int x = 0;
         for (int i = 1; i < 9; i++)
         {
@@ -210,29 +213,31 @@ public class ControlCenter : MonoBehaviour
                             piece.Return();
                             // current = null;
                         }
-                        if (current != null)
-                        {
-                            current = null;
-                        }
-                        canPlace = false;
-                        canTarget = false;
+                        StartCoroutine(WaitForPromote());
                         break;
                     }
                     else
                     {
                         piece.canDrag = false;
                         piece.IgnoreLock(tiles[i].gameObject.transform.position, tiles[i].GetComponent<Tile>());
-                        if (current != null)
-                        {
-                            current = null;
-                        }
-                        canPlace = false;
-                        canTarget = false;
+                        StartCoroutine(WaitForPromote());
                         break;
                     }
                 }
             }
         }
+    }
+
+    IEnumerator WaitForPromote()
+    {
+        yield return new WaitUntil(() => promoteCanvas.activeInHierarchy == false);
+
+        if (current != null)
+        {
+            current = null;
+        }
+        canPlace = false;
+        canTarget = false;
     }
 
     void Check(Movement piece, Vector2 pos, Tile tile)

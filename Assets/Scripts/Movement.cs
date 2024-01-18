@@ -513,6 +513,7 @@ public class Movement : MonoBehaviour
         }
         if (moveTypes.Contains(5) && currentTile.promotionType == pieceColor)
         {
+            controlCenter.promoteCanvas.SetActive(true);
             currentTile.Promote(pieceColor);
         }
     }
@@ -541,6 +542,10 @@ public class Movement : MonoBehaviour
         {
             controlCenter.turn = 1;
             controlCenter.Ticker(2);
+        }
+        if (moveTypes.Contains(5) && currentTile.promotionType == pieceColor)
+        {
+            currentTile.Promote(pieceColor);
         }
     }
 

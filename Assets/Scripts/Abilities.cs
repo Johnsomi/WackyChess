@@ -765,6 +765,12 @@ public class Abilities : MonoBehaviour
         {
             Kill(piece.currentTile);
         }
+        StartCoroutine(WaitForPromote());
+    }
+
+    IEnumerator WaitForPromote()
+    {
+        yield return new WaitUntil(() => controlCenter.promoteCanvas.activeInHierarchy == false);
         piece = null;
     }
 }
