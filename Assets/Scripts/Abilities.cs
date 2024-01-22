@@ -33,7 +33,7 @@ public class Abilities : MonoBehaviour
         Order66 = 14,
         Oath = 15, // Oath to the crown
         Henry = 16, // Off with her head
-        FastPromote = 17,
+        FormShift = 17,
         Empower = 18,
         Infiltrate = 19, //
         Guardian = 20,
@@ -59,7 +59,7 @@ public class Abilities : MonoBehaviour
         {
 
             //int random = UnityEngine.Random.Range(0, abilities);
-            int random = 4;
+            int random = 17;
             piece.abilityType.Add(random);
         }
         else if (count == 1)
@@ -211,7 +211,7 @@ public class Abilities : MonoBehaviour
                 return "Off with her head";
 
             case 17:
-                return "Quick Promotion";
+                return "Form Shift";
 
             case 18:
                 return "Empower";
@@ -317,7 +317,9 @@ public class Abilities : MonoBehaviour
                 break;
 
             case 17:
-                // return "Quick Promotion";
+                // return "Form Shift";
+                piece.usedAbility = 17;
+                UseAbility(17, null);
                 break;
 
             case 18:
@@ -338,7 +340,7 @@ public class Abilities : MonoBehaviour
 
     public void UseAbility(int ability, Tile Target)
     {
-        if (ability != 5)
+        if (ability != 5 && ability != 17)
         {
             controlCenter.TargetSet(piece, Target.transform.position, ability);
         }
@@ -347,6 +349,10 @@ public class Abilities : MonoBehaviour
             if (ability == 5)
             {
                 controlCenter.EffectAllInRange(2);
+            }
+            else if (ability == 17)
+            {
+                FormShift();
             }
         }
         //else if (ability == 4)
@@ -727,6 +733,14 @@ public class Abilities : MonoBehaviour
     //    tile.SetPiece(piece, true);
     //    EndAbility();
     //}
+
+    void FormShift()
+    {
+        int random = UnityEngine.Random.Range(2, 5);
+        piece.currentTile.SetPromote(random);
+        piece.currentTile.Promote(piece.pieceColor);
+        EndAbility();
+    }
 
     public void Kill(Tile tile)
     {
