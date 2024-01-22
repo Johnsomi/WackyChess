@@ -497,20 +497,30 @@ public class Movement : MonoBehaviour
                 abilities.AddAbility();
                 hasMoved++;
             }
+            if (pieceColor == 1)
+            {
+                controlCenter.turn = 2;
+                controlCenter.Ticker(1);
+            }
+            else
+            {
+                controlCenter.turn = 1;
+                controlCenter.Ticker(2);
+            }
         }
         gameObject.transform.position = pos;
         currentTile = tile;
         currentTile.SetPiece(this, take);
-        if (pieceColor == 1)
-        {
-            controlCenter.turn = 2;
-            controlCenter.Ticker(1);
-        }
-        else
-        {
-            controlCenter.turn = 1;
-            controlCenter.Ticker(2);
-        }
+        //if (pieceColor == 1)
+        //{
+        //    controlCenter.turn = 2;
+        //    controlCenter.Ticker(1);
+        //}
+        //else
+        //{
+        //    controlCenter.turn = 1;
+        //    controlCenter.Ticker(2);
+        //}
         if (moveTypes.Contains(5) && currentTile.promotionType == pieceColor)
         {
             controlCenter.promoteCanvas.SetActive(true);
@@ -524,29 +534,39 @@ public class Movement : MonoBehaviour
 
     public void IgnoreLock(Vector2 pos, Tile tile)
     {
-        //if (currentTile != null)
-        //{
-        //    currentTile.SetPiece(null, false);
-        //    if (hasMoved == 0)
-        //    {
-        //        abilities.piece = this;
-        //        abilities.AddAbility();
-        //        hasMoved++;
-        //    }
-        //}
+        if (currentTile != null)
+        {
+            if (pieceColor == 1)
+            {
+                controlCenter.turn = 2;
+                controlCenter.Ticker(1);
+            }
+            else
+            {
+                controlCenter.turn = 1;
+                controlCenter.Ticker(2);
+            }
+            //    currentTile.SetPiece(null, false);
+            //    if (hasMoved == 0)
+            //    {
+            //        abilities.piece = this;
+            //        abilities.AddAbility();
+            //        hasMoved++;
+            //    }
+        }
         gameObject.transform.position = pos;
         currentTile = tile;
         currentTile.SetPiece(this, false);
-        if (pieceColor == 1)
-        {
-            controlCenter.turn = 2;
-            controlCenter.Ticker(1);
-        }
-        else
-        {
-            controlCenter.turn = 1;
-            controlCenter.Ticker(2);
-        }
+        //if (pieceColor == 1)
+        //{
+        //    controlCenter.turn = 2;
+        //    controlCenter.Ticker(1);
+        //}
+        //else
+        //{
+        //    controlCenter.turn = 1;
+        //    controlCenter.Ticker(2);
+        //}
         if (moveTypes.Contains(5) && currentTile.promotionType == pieceColor)
         {
             currentTile.Promote(pieceColor);

@@ -16,18 +16,18 @@ public class Abilities : MonoBehaviour
     public Button buttonClose;
     private enum AbilityTypes
     {
-        SneakAttack = 0,
-        Shoot = 1,
-        Warp = 2,
+        SneakAttack = 0, //
+        Shoot = 1, //
+        Warp = 2, //
         Dash = 3,
-        Swap = 4,
-        SelfDestruct = 5,
-        Poisonous = 6,
+        Swap = 4, //
+        SelfDestruct = 5, //
+        Poisonous = 6, //
         Hideaway = 7,
-        Freeze = 8,
+        Freeze = 8, //
         Conqueror = 9,
-        Devolve = 10,
-        Draft = 11,
+        Devolve = 10, //
+        Draft = 11, //
         Goliath = 12,
         Immunity = 13,
         Order66 = 14,
@@ -35,7 +35,7 @@ public class Abilities : MonoBehaviour
         Henry = 16, // Off with her head
         FastPromote = 17,
         Empower = 18,
-        Infiltrate = 19,
+        Infiltrate = 19, //
         Guardian = 20,
     }
     // Start is called before the first frame update
@@ -59,7 +59,7 @@ public class Abilities : MonoBehaviour
         {
 
             //int random = UnityEngine.Random.Range(0, abilities);
-            int random = 2;
+            int random = 4;
             piece.abilityType.Add(random);
         }
         else if (count == 1)
@@ -285,8 +285,10 @@ public class Abilities : MonoBehaviour
                 break;
 
             case 10:
+                piece.usedAbility = 10;
+                OmniShot(1, 2);
                 break;
-                //return "Devolve";
+            //return "Devolve";
 
             case 11:
                 piece.usedAbility = 11;
@@ -692,6 +694,14 @@ public class Abilities : MonoBehaviour
         //tile.SetPiece(piece, false);
         //swapper.SetPiece(temp, false);
         EndAbility();
+    }
+
+    public void DevolvePiece(Tile tile, int color)
+    {
+        Kill(tile);
+        if (color == 1) color = 2;
+        else if (color == 2) color = 1;
+        CreatePiece(tile, 5, color);
     }
 
     public void CreatePiece(Tile tile, int pieceType, int color)

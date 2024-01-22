@@ -163,6 +163,10 @@ public class ControlCenter : MonoBehaviour
                     {
                         piece.abilities.CreatePiece(tiles[i].GetComponent<Tile>(), 5, piece.pieceColor);
                     }
+                    else if (ua == 10)
+                    {
+                        piece.abilities.DevolvePiece(tiles[i].GetComponent<Tile>(), piece.pieceColor);
+                    }
                     if (current != null)
                     {
                         current = null;
@@ -467,6 +471,8 @@ public class ControlCenter : MonoBehaviour
         //}
         var temp1 = tuple.Item1;
         var temp2 = tuple.Item2;
+        int uaV = 100;
+        uaV = piece.usedAbility;
 
         for (int j = 0; j < tiles.Count; j++)
         {
@@ -482,7 +488,17 @@ public class ControlCenter : MonoBehaviour
                     }
                     else if (tile.currentPiece.pieceColor != piece.pieceColor && effect != 1)// || digAttack))
                     {
-                        possibles.Add(tuple);
+                        if (uaV == 10)
+                        {
+                            if (!tile.currentPiece.moveTypes.Contains(5) && !tile.currentPiece.moveTypes.Contains(0)) 
+                            {
+                                possibles.Add(tuple);
+                            }
+                        } 
+                        else 
+                        {
+                            possibles.Add(tuple);
+                        }
                     }
                     else if (tile.currentPiece.pieceColor == piece.pieceColor && effect != 2)
                     {
